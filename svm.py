@@ -18,9 +18,9 @@ class SVMClassify:
     def run(self):
         data = self.__ngram.training(self.__training_data['sen'])
         test = self.__ngram.vectorization(self.__test_data['sen'])
-        print data.shape
-        training_array = self.concate(data, self.__vectorization(self.__training_data['sen']))
-        test_array = self.concate(test, self.__vectorization(self.__test_data['sen']))  
+        
+        training_array = self.__concate(data, self.__vectorization(self.__training_data['sen']))
+        test_array = self.__concate(test, self.__vectorization(self.__test_data['sen']))  
         clf = svm.SVC()
         clf.fit(training_array, self.__training_data['lab'])
 
@@ -28,7 +28,8 @@ class SVMClassify:
         score_valuation = clf.score(test_array, self.__test_data['lab'])
         return score_training, score_valuation
         
-    def concate(self, x, y):
+        
+    def __concate(self, x, y):
         if y is None:
             return x
         else:
@@ -44,5 +45,3 @@ class SVMClassify:
                 data = np.concatenate(data, self.__feature2vecs[i].vectorization(text_corpus), axis=1)
             return data
             
-        
-    
