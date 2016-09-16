@@ -1,1 +1,4 @@
 *.pyc
+metamap/
+SentiWordNet_3.0.0/
+SentiWordNet_3.0.0.tgz
