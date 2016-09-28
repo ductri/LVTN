@@ -1,0 +1,10 @@
+should try others: stand naive bayse, multinomial naive bayse
+
+Most of paper said: use single unigram will give a outstanding result than bigram with / without 
+POS. It's weird ?
+
+"The classifier, however, cannot
+determine that these four types of good are in any way related, and so in order to train
+accurately there must be enough examples of all four in the training corpus"
+
+- Need a preprocessing: lemmatisation 

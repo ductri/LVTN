@@ -27,21 +27,46 @@ def load(is_one_set=False):
         np.random.shuffle(shuffle_index)
         data = data.iloc[shuffle_index, :]
         data.index = np.arange(data_size)
-        
+        raw = data.copy()
         # Preprocessing
         data['sen'] = preprocessing(data['sen'])
         
         if not is_one_set:
             training_size = data.shape[0]*2/3
-            
             training = data[0:training_size]
             test = data[training_size:]
             test.index = np.arange(test.shape[0])
+            
+            raw_training = raw[0:training_size]
+            raw_test = raw[training_size:]
+            raw_test.index = np.arange(test.shape[0])
+            
             print 'training_size: '+str(training.shape[0])
             print 'test_size: '+str(test.shape[0])
-            return training, test
+            return training, test, raw_training, raw_test
         else:
             return data
+def load_raw():
+    data = pd.read_csv("F:\\code\\python\\lvtn\\final.csv", dtype={'sen':str})
+    data_size = data.shape[0]
+    
+    # Just classify 0 and the others
+    #data.loc[data['lab']!=0,'lab']=1
+    #data.loc[data['lab']!=2,'lab']=1
+    #data.loc[data['lab']==2,'lab']=0
+    # Shuffle dataframe
+    shuffle_index = np.arange(data_size)
+    np.random.shuffle(shuffle_index)
+    data = data.iloc[shuffle_index, :]
+    data.index = np.arange(data_size)
+    training_size = data.shape[0]*2/3
+            
+    training = data[0:training_size]
+    test = data[training_size:]
+    test.index = np.arange(test.shape[0])
+    print 'training_size: '+str(training.shape[0])
+    print 'test_size: '+str(test.shape[0])
+    return training, test
             
 def preprocessing(corpus):
     # Lower text
@@ -50,7 +75,7 @@ def preprocessing(corpus):
     corpus = label_number(corpus)
     corpus = filter_stopwords(corpus)
     corpus = metamaping(corpus)
-    corpus = stemming(corpus)
+    #corpus = stemming(corpus)
     return corpus
     
 def label_number(corpus):

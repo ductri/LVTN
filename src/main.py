@@ -14,11 +14,14 @@ import numpy as np
 from sklearn import metrics
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.cross_validation import KFold
+import sentiwordnet
+from sklearn.metrics import confusion_matrix
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
-training_data, test_data = preprocessing.load()
+# 0:NEG, 1:NEU, 2:POS
+training_data, test_data, raw_training, raw_test = preprocessing.load()
 
 def training_ngram(corpus):
     vectorizer = CountVectorizer(min_df=2, decode_error="ignore", analyzer="word", 
@@ -122,7 +125,12 @@ test_x = ngram.transform(test_data['sen']).toarray()
 test_y = test_data['lab']
 
 data_x = np.concatenate((data_x, training_change_phrase(training_data['sen'])), axis=1)
+#_, senti,senti_score1 = sentiwordnet.score(raw_training['sen'], raw_training['lab'])
+#data_x = np.concatenate((data_x, np.array(senti).reshape((raw_training.shape[0],1))), axis=1)
+
 test_x = np.concatenate((test_x, training_change_phrase(test_data['sen'])), axis=1)
+#_, senti,senti_score1 = sentiwordnet.score(raw_test['sen'], raw_test['lab'])
+#test_x = np.concatenate((test_x, np.array(senti).reshape((raw_test.shape[0],1))), axis=1)
 
 clf = svm.SVC(decision_function_shape='ovr', C=100)
 clf.fit(data_x, data_y)
@@ -131,6 +139,23 @@ s = metrics.precision_score(test_y, predict, average="weighted")
 r = metrics.recall_score(test_y, predict, average="weighted")
 f1 = metrics.f1_score(test_y, predict, average="weighted")
 print f1
+
+predict1 = clf.predict(data_x)
+_, predict2,senti_score1 = sentiwordnet.score(raw_training['sen'], raw_training['lab'])
+predict2 = map(float, predict2)
+X = np.vstack((predict1, predict2)).T
+X = np.array((predict1.tolist(), predict2)).T
+clf1 = svm.SVC(decision_function_shape='ovr', C=0.1)
+clf1.fit(X, training_data['lab'])
+_, predict3, senti_score2 = sentiwordnet.score(raw_test['sen'], raw_test['lab'])
+Test = np.vstack((predict.tolist(), predict3)).T
+
+print 'score trainings: '+str(clf1.score(X, training_data['lab']))
+print 'score test final: '+str(clf1.score(Test, test_data['lab']))
+predict = clf1.predict(Test)
+s1 = metrics.precision_score(test_data['lab'], predict, average="weighted")
+r1 = metrics.recall_score(test_data['lab'], predict, average="weighted")
+f11 = metrics.f1_score(test_data['lab'], predict, average="weighted")
 
 def eva(lb, test_y, predict):
     test_y_ = test_y.copy()
