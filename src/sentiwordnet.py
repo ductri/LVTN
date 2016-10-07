@@ -28,7 +28,7 @@ def score_word_with_tag(word):
     #scores = map(lambda x: x.pos_score() - x.neg_score(), sentis)
     try:
         senti = swn.senti_synset(word+'.1')
-        print senti
+        #print senti
         score = senti.pos_score() - senti.neg_score()
     except nltk.corpus.reader.wordnet.WordNetError:
         score = 0
@@ -37,11 +37,11 @@ def score_word_with_tag(word):
 def score_sen(sen):
     text = nltk.word_tokenize(sen)
     tagged_words = nltk.pos_tag(text, tagset='universal')
-    print 'tagged_words:' + str(tagged_words)
+    #print 'tagged_words:' + str(tagged_words)
     words_with_tag = map(lambda x: convert(x), tagged_words)
-    print 'words_with_tag:' + str(words_with_tag)
+    #print 'words_with_tag:' + str(words_with_tag)
     score = map(lambda x: score_word_with_tag(x), words_with_tag)
-    print score
+    #print score
     return sum(score)*1.0/len(text)
     
     
@@ -54,11 +54,13 @@ def score(corpus, lab):
         elif x < -0.4:
             return 0 
         else: return 1
-        
-    predict = map(convert, list_score)
-    mat = confusion_matrix(predict, lab)
-    s = (mat[0][0]+mat[1][1]+mat[2][2])*1.0/sum(sum(mat))
-    print((mat[0][0]+mat[1][1]+mat[2][2])*1.0/sum(sum(mat)))
-    return mat, predict, s
+    ave = sum(list_score)*1.0/len(list_score)
+    scale = max(map(abs,list_score))
+    predict = map(lambda x: (x-ave+1)/scale, list_score)
+    #predict = map(convert, list_score)
+    #mat = confusion_matrix(predict, lab)
+    #s = (mat[0][0]+mat[1][1]+mat[2][2])*1.0/sum(sum(mat))
+    #print((mat[0][0]+mat[1][1]+mat[2][2])*1.0/sum(sum(mat)))
+    return list_score
 def predict(corpus):
     return map(score_sen, corpus)
