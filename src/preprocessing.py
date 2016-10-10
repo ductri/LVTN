@@ -86,13 +86,15 @@ def load(is_one_set=False):
     # Shuffle dataframe
     shuffle_index = np.arange(data_size)
     
-    np.random.shuffle(shuffle_index)
+    #np.random.shuffle(shuffle_index)
     data = data.iloc[shuffle_index, :]
     data.index = np.arange(data_size)
     print 'suffering done'    
     
     print 'copy 2'    
     raw = src_data_raw.copy()
+    raw = raw.iloc[shuffle_index, :]
+    raw.index = np.arange(data_size)
     print 'copy 2 done'    
     # Preprocessing
     #data['sen'] = preprocessing(data['sen'])

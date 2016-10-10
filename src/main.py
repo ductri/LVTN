@@ -110,6 +110,7 @@ def cv(k, c):
     print 'Finish!'
     return s, r, f1, q
 
+
 def normalize(data):
     print 'data:'+str(len(data))
     scale = np.max(np.abs(data), axis=0)
