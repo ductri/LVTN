@@ -6,8 +6,11 @@ Created on Mon Sep 12 09:40:43 2016
 """
 
 #from svm import SVMClassify
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 import preprocessing
-import sys  
+
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn import svm
 import numpy as np
@@ -18,28 +21,33 @@ import sentiwordnet
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import time
+import pandas as pd
+from sklearn.naive_bayes import BernoulliNB
 
-reload(sys)
-sys.setdefaultencoding('utf8')
+
+base_directory = "F:\\code\\python\\lvtn\\"
 
 # 0:NEG, 1:NEU, 2:POS
 training_data, test_data, raw_training, raw_test, raw = preprocessing.load()
 
 def training_ngram(corpus):
-    vectorizer = CountVectorizer(min_df=3, decode_error="ignore", analyzer="word", 
-                                        lowercase=True, binary=True, ngram_range=(1,3),
+    vectorizer = CountVectorizer(min_df=4, decode_error="ignore", analyzer="word", 
+                                        lowercase=True, binary=True, ngram_range=(1,2),
                                         stop_words='english')
     data_array = vectorizer.fit_transform(corpus).toarray()
-    print data_array.shape
+    #print data_array.shape
     return data_array, vectorizer
 def training_change_phrase(corpus):
-    BAD = ["suffer", "adverse", "hazards", "risk"]
-    GOOD = ["benefit", "improvement", "advantage", "accuracy", "great"]
-    
+    BAD = ["suffer", "adverse", "hazards", "risk", "death", "insufficient",
+           "infection", "recurrence", "restlessness", "mortality", "hazard",
+           "chronic", "pain", "negative", "severity"]
+    GOOD = ["benefit", "improvement", "advantage", "accuracy", "great",
+            "effective", "support", "potential", "superior", "mild", "achieved",
+           "Supplementation", "beneficial", "positive"]    
     MORE = ["enhance", "higher", "exceed", "increase", "improve", "somewhat",
-            "quite", "very", "higher"]
+            "quite", "very", "higher", "more", "augments", "highest"]
     LESS = ["reduce", "decline", "fall", "less", "little", "slightly", "only", 
-            "mildly", "smaller", "lower"]
+            "mildly", "smaller", "lower", "reduction"]
     
     stemmer = SnowballStemmer("english")
     BAD = [stemmer.stem(w) for w in BAD]
@@ -72,8 +80,8 @@ def training_change_phrase(corpus):
     return result
 
 def cv(k, c):
-    print '*'*70
-    print 'Running...'
+    #print '*'*70
+    #print 'Running...'
     score_training = 0
 
     s=0
@@ -89,8 +97,8 @@ def cv(k, c):
         raw_training = data_raw.iloc[train_index, :]
         test_data = data.iloc[test_index, :]
         raw_test = data_raw.iloc[test_index, :]
-        print 'train_size: '+str(training_data.shape[0])
-        print 'test_size: '+str(test_data.shape[0])
+        #print 'train_size: '+str(training_data.shape[0])
+        ##print 'test_size: '+str(test_data.shape[0])
         
         predict, s_, r_, f1_ = run(training_data, test_data,raw_training, raw_test,  c)
 
@@ -106,13 +114,13 @@ def cv(k, c):
     f1 /= 1.0*len(kf)
     q /= 1.0*len(kf)
     
-    print '*'*70
-    print 'Finish!'
+    ##print '*'*70
+    ##print 'Finish!'
     return s, r, f1, q
 
 
 def normalize(data):
-    print 'data:'+str(len(data))
+    ##print 'data:'+str(len(data))
     scale = np.max(np.abs(data), axis=0)
     
     def conv(x):
@@ -123,52 +131,52 @@ def normalize(data):
     try:
         scale = map(conv, scale)
     except:
-        print 'except'
-        print 'scale=' + str(scale)
+        ##print 'except'
+        ##print 'scale=' + str(scale)
         ave = np.average(data, axis=0)
         return (data-ave)/scale
     ave = np.average(data, axis=0)
     return (data-ave)/scale
     
 def run(training_data, test_data, raw_training, raw_test, c):
-    print 'training_data:'+str(training_data.shape)
+    ##print 'training_data:'+str(training_data.shape)
     data_x, ngram = training_ngram(training_data['sen'])
-    print 'data_x1:'+str(data_x.shape)
+    ##print 'data_x1:'+str(data_x.shape)
     data_x = normalize(data_x)
-    print 'data_x2:'+str(data_x.shape)
-    print 'raw_data:'+str(raw_training.shape)
+    ##print 'data_x2:'+str(data_x.shape)
+    ##print 'raw_data:'+str(raw_training.shape)
     data_y = training_data['lab']*1.0
     test_x = ngram.transform(test_data['sen']).toarray()
     test_x = normalize(test_x)
     test_y = test_data['lab']*1.0
     
-    #data_x = np.concatenate((data_x, training_change_phrase(training_data['sen'])), axis=1)
-    #senti = sentiwordnet.score(raw_training['sen'], raw_training['lab'])
-    #senti = normalize(senti)
-    #print data_x.shape
-    #print raw_training.shape[0]
-    #data_x = np.concatenate((data_x, np.array(senti).reshape((raw_training.shape[0],1))), axis=1)
+    data_x = np.concatenate((data_x, training_change_phrase(training_data['sen'])), axis=1)
+    test_x = np.concatenate((test_x, training_change_phrase(test_data['sen'])), axis=1)
+#    
+#    #SOCAL
+    socal = pd.read_csv(base_directory + "so-cal.csv")
+    temp = pd.merge(training_data, socal, on='id')
+    data_x = np.concatenate((data_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
     
-    #test_x = np.concatenate((test_x, training_change_phrase(test_data['sen'])), axis=1)
+    temp = pd.merge(test_data, socal, on='id')
+    test_x = np.concatenate((test_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
     
-    #Normalization
-#    temp = np.max(data_x, axis=0)
-#    temp[temp==0] = 1
-#    data_x = data_x*1.0/temp
-#    temp = np.max(test_x, axis=0)
-#    temp[temp==0] = 1
-#    test_x = test_x*1.0/temp
-    #senti = sentiwordnet.score(raw_test['sen'], raw_test['lab'])
-    #senti = normalize(senti)
-    #test_x = np.concatenate((test_x, np.array(senti).reshape((raw_test.shape[0],1))), axis=1)
-    #BEST 30.5
-    clf = svm.SVC(decision_function_shape='ovr', C=c)
+    #10
+    clf = svm.SVC(decision_function_shape='ovr', C=c, kernel='rbf', class_weight='balanced')
+    #clf = svm.NuSVC(nu=c, decision_function_shape='ovr')
+    #0.4->0.5
+    #clf = BernoulliNB(alpha=c)
+    
+
+    
+    
     clf.fit(data_x, data_y)
     predict = clf.predict(test_x)
     s = metrics.precision_score(test_y, predict, average="weighted")
     r = metrics.recall_score(test_y, predict, average="weighted")
     f1 = metrics.f1_score(test_y, predict, average="weighted")
-    print f1
+    
+    #print f1
     return predict, s, r, f1
 #predict1 = clf.predict(data_x)
 #_, predict2,senti_score1 = sentiwordnet.score(raw_training['sen'], raw_training['lab'])
@@ -180,8 +188,8 @@ def run(training_data, test_data, raw_training, raw_test, c):
 #_, predict3, senti_score2 = sentiwordnet.score(raw_test['sen'], raw_test['lab'])
 #Test = np.vstack((predict.tolist(), predict3)).T
 #
-#print 'score trainings: '+str(clf1.score(X, training_data['lab']))
-#print 'score test final: '+str(clf1.score(Test, test_data['lab']))
+##print 'score trainings: '+str(clf1.score(X, training_data['lab']))
+##print 'score test final: '+str(clf1.score(Test, test_data['lab']))
 #predict = clf1.predict(Test)
 #s1 = metrics.precision_score(test_data['lab'], predict, average="weighted")
 #r1 = metrics.recall_score(test_data['lab'], predict, average="weighted")
@@ -192,32 +200,38 @@ def eva(lb, test_y, predict):
     index = (test_y_==lb)
     test_y_[index]=1
     test_y_[~index]=0
-    #print 'sum test='+str(sum(test_y_))
+    ##print 'sum test='+str(sum(test_y_))
     predict_ = predict.copy()
     index = (predict_==lb)
     predict_[index]=1
     predict_[~index]=0
-    #print 'predict ='+str(sum(predict_))
+    ##print 'predict ='+str(sum(predict_))
     s = metrics.precision_score(test_y_, predict_)
     r = metrics.recall_score(test_y_, predict_)
     f1 = metrics.f1_score(test_y_, predict_)
     return s, r, f1
 
-def test(n, c=61):
+def test(n=50, c=30.5):
     f1 = 0
     for i in range(0,n):
         _,_,f1_,_ = cv(3, c)
         f1+= f1_
     return f1/n
 
-def findc():
+def findc(title):
     start = time.time()
     score = []
-    c = np.arange(20, 40, 3)
+    c = np.arange(5, 30, 1)
+    index = 0
     for i in c:
-        print '-----------------------------'+str(i)+'-------------------------------------------------'
-        
-        score.append(test(20, i))
+        print '-'*30
+        print(str(index)+'/'+str(len(c)))
+        print('c='+str(i))
+        print '-'*30
+        index = index + 1
+        score.append(test(40, i))
+    plt.figure()
     plt.plot(c, score)
+    plt.title(title)
     end = time.time()
     print('time: ' + str(end-start))

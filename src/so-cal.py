@@ -42,7 +42,7 @@ data['sen'] = metamaping(data['sen'])
 
 data['socal']=0
 
-for i in range(data.shape[0]):    
+for i in range(data.shape[0]):
     r = requests.post('http://www.cs.sfu.ca/~sentimen/socal/SO_Web.cgi', 
                   data = {'user_input':data['sen'][i]})
     soup = BeautifulSoup(r.text, 'html.parser')

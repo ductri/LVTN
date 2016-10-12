@@ -52,7 +52,7 @@ def metamaping(corpus):
     for word in listwords:
         dict_listwords[word] = word
     #3
-    #os.system("java -jar F:\code\python\lvtn\src\metamap4.jar F:\code\python\lvtn\src\input.txt F:\code\python\lvtn\src\metamap_output.txt")
+    #os.system("java -jar F:\code\python\lvtn\src\metamap5.jar F:\code\python\lvtn\src\input.txt F:\code\python\lvtn\src\metamap_output.txt")
     output = pd.read_csv("F:\\code\\python\\lvtn\\src\\metamap_output.txt", sep=" ", header=None)
     for i in range(output.shape[0]):
         dict_listwords[output[0][i]] = output[1][i]
@@ -70,13 +70,13 @@ def stemming(corpus):
 src= "F:\\code\\python\\lvtn\\standard.csv"
 src_data_raw = pd.read_csv(src, dtype={'sen':str})
 src_data = preprocessing(src_data_raw['sen'])
-
+#src_data = src_data_raw['sen']
 #src= "F:\\code\\python\\lvtn\\so-cal.csv"
 def load(is_one_set=False):
-    print 'begin loading'
+    #print 'begin loading'
     data = src_data_raw.copy()
     data['sen'] =src_data
-    print 'copy 1 done'
+    #print 'copy 1 done'
     data_size = data.shape[0]
     
     # Just classify 0 and the others
@@ -86,36 +86,36 @@ def load(is_one_set=False):
     # Shuffle dataframe
     shuffle_index = np.arange(data_size)
     
-    #np.random.shuffle(shuffle_index)
+    np.random.shuffle(shuffle_index)
     data = data.iloc[shuffle_index, :]
     data.index = np.arange(data_size)
-    print 'suffering done'    
+    #print 'suffering done'    
     
-    print 'copy 2'    
+    #print 'copy 2'    
     raw = src_data_raw.copy()
     raw = raw.iloc[shuffle_index, :]
     raw.index = np.arange(data_size)
-    print 'copy 2 done'    
+    #print 'copy 2 done'    
     # Preprocessing
     #data['sen'] = preprocessing(data['sen'])
-    #print 'Preprocessing done!'
+    ##print 'Preprocessing done!'
     if not is_one_set:
         training_size = data.shape[0]*2/3
-        print 'get data for training'
+        #print 'get data for training'
         training = data[0:training_size]
-        print 'get data for training done!'
-        print 'get data for testing'
+        #print 'get data for training done!'
+        #print 'get data for testing'
         test = data[training_size:]
-        print 'get data for testing done!'
+        #print 'get data for testing done!'
         test.index = np.arange(test.shape[0])
         
-        print 'get data raw'
+        #print 'get data raw'
         raw_training = raw[0:training_size]
         raw_test = raw[training_size:]
         raw_test.index = np.arange(test.shape[0])
-        print 'Done!'
-        print 'training_size: '+str(training.shape[0])
-        print 'test_size: '+str(test.shape[0])
+        #print 'Done!'
+        #print 'training_size: '+str(training.shape[0])
+        #print 'test_size: '+str(test.shape[0])
         
         return training, test, raw_training, raw_test, raw
     else:
@@ -138,8 +138,8 @@ def load_raw():
     training = data[0:training_size]
     test = data[training_size:]
     test.index = np.arange(test.shape[0])
-    print 'training_size: '+str(training.shape[0])
-    print 'test_size: '+str(test.shape[0])
+    #print 'training_size: '+str(training.shape[0])
+    #print 'test_size: '+str(test.shape[0])
     return training, test
             
 
