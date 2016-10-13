@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 import time
 import pandas as pd
 from sklearn.naive_bayes import BernoulliNB
-
+from sklearn.decomposition import PCA
 
 base_directory = "F:\\code\\python\\lvtn\\"
 
@@ -31,7 +31,7 @@ base_directory = "F:\\code\\python\\lvtn\\"
 training_data, test_data, raw_training, raw_test, raw = preprocessing.load()
 
 def training_ngram(corpus):
-    vectorizer = CountVectorizer(min_df=4, decode_error="ignore", analyzer="word", 
+    vectorizer = CountVectorizer(min_df=3, decode_error="ignore", analyzer="word", 
                                         lowercase=True, binary=True, ngram_range=(1,2),
                                         stop_words='english')
     data_array = vectorizer.fit_transform(corpus).toarray()
@@ -79,44 +79,7 @@ def training_change_phrase(corpus):
     result = [sen2vec(sen) for sen in corpus]
     return result
 
-def cv(k, c):
-    #print '*'*70
-    #print 'Running...'
-    score_training = 0
 
-    s=0
-    r=0
-    f1=0
-    
-    q = np.zeros((3, 3))
-    
-    data, data_raw = preprocessing.load(True)
-    kf = KFold(data.shape[0], n_folds=k)
-    for train_index, test_index in kf:
-        training_data = data.iloc[train_index, :]
-        raw_training = data_raw.iloc[train_index, :]
-        test_data = data.iloc[test_index, :]
-        raw_test = data_raw.iloc[test_index, :]
-        #print 'train_size: '+str(training_data.shape[0])
-        ##print 'test_size: '+str(test_data.shape[0])
-        
-        predict, s_, r_, f1_ = run(training_data, test_data,raw_training, raw_test,  c)
-
-        s += s_
-        r += r_
-        f1 += f1_
-        q[0,:] += eva(0, test_data['lab'], predict)
-        q[1,:] += eva(1, test_data['lab'], predict)
-        q[2,:] += eva(2, test_data['lab'], predict)
-    score_training /= len(kf)
-    s /= 1.0*len(kf)
-    r /= 1.0*len(kf)
-    f1 /= 1.0*len(kf)
-    q /= 1.0*len(kf)
-    
-    ##print '*'*70
-    ##print 'Finish!'
-    return s, r, f1, q
 
 
 def normalize(data):
@@ -150,16 +113,16 @@ def run(training_data, test_data, raw_training, raw_test, c):
     test_x = normalize(test_x)
     test_y = test_data['lab']*1.0
     
-    data_x = np.concatenate((data_x, training_change_phrase(training_data['sen'])), axis=1)
-    test_x = np.concatenate((test_x, training_change_phrase(test_data['sen'])), axis=1)
-#    
-#    #SOCAL
-    socal = pd.read_csv(base_directory + "so-cal.csv")
-    temp = pd.merge(training_data, socal, on='id')
-    data_x = np.concatenate((data_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
+    #data_x = np.concatenate((data_x, training_change_phrase(training_data['sen'])), axis=1)
+    #test_x = np.concatenate((test_x, training_change_phrase(test_data['sen'])), axis=1)
+##    
+##    #SOCAL
+    #socal = pd.read_csv(base_directory + "so-cal.csv")
+    #temp = pd.merge(training_data, socal, on='id')
+    #data_x = np.concatenate((data_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
     
-    temp = pd.merge(test_data, socal, on='id')
-    test_x = np.concatenate((test_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
+    #temp = pd.merge(test_data, socal, on='id')
+    #test_x = np.concatenate((test_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
     
     #10
     clf = svm.SVC(decision_function_shape='ovr', C=c, kernel='rbf', class_weight='balanced')
@@ -176,52 +139,59 @@ def run(training_data, test_data, raw_training, raw_test, c):
     r = metrics.recall_score(test_y, predict, average="weighted")
     f1 = metrics.f1_score(test_y, predict, average="weighted")
     
+    f1_all = metrics.f1_score(test_y, predict, average=None)
+    
     #print f1
-    return predict, s, r, f1
-#predict1 = clf.predict(data_x)
-#_, predict2,senti_score1 = sentiwordnet.score(raw_training['sen'], raw_training['lab'])
-#predict2 = map(float, predict2)
-#X = np.vstack((predict1, predict2)).T
-#X = np.array((predict1.tolist(), predict2)).T
-#clf1 = svm.SVC(decision_function_shape='ovr', C=0.1)
-#clf1.fit(X, training_data['lab'])
-#_, predict3, senti_score2 = sentiwordnet.score(raw_test['sen'], raw_test['lab'])
-#Test = np.vstack((predict.tolist(), predict3)).T
-#
-##print 'score trainings: '+str(clf1.score(X, training_data['lab']))
-##print 'score test final: '+str(clf1.score(Test, test_data['lab']))
-#predict = clf1.predict(Test)
-#s1 = metrics.precision_score(test_data['lab'], predict, average="weighted")
-#r1 = metrics.recall_score(test_data['lab'], predict, average="weighted")
-#f11 = metrics.f1_score(test_data['lab'], predict, average="weighted")
+    return predict, s, r, f1, f1_all
 
-def eva(lb, test_y, predict):
-    test_y_ = test_y.copy()
-    index = (test_y_==lb)
-    test_y_[index]=1
-    test_y_[~index]=0
-    ##print 'sum test='+str(sum(test_y_))
-    predict_ = predict.copy()
-    index = (predict_==lb)
-    predict_[index]=1
-    predict_[~index]=0
-    ##print 'predict ='+str(sum(predict_))
-    s = metrics.precision_score(test_y_, predict_)
-    r = metrics.recall_score(test_y_, predict_)
-    f1 = metrics.f1_score(test_y_, predict_)
-    return s, r, f1
+def cv(k, c):
 
-def test(n=50, c=30.5):
+    s=0
+    r=0
+    f1=0
+    f1_all = np.zeros(3)
+    
+    data, data_raw = preprocessing.load(True)
+    kf = KFold(data.shape[0], n_folds=k)
+    for train_index, test_index in kf:
+        training_data = data.iloc[train_index, :]
+        raw_training = data_raw.iloc[train_index, :]
+        test_data = data.iloc[test_index, :]
+        raw_test = data_raw.iloc[test_index, :]
+        #print 'train_size: '+str(training_data.shape[0])
+        #print 'test_size: '+str(test_data.shape[0])
+        
+        predict, s_, r_, f1_,f1_all_ = run(training_data, test_data,raw_training, raw_test,  c)
+
+        s += s_
+        r += r_
+        f1 += f1_
+        f1_all += f1_all_
+  
+    s /= 1.0*len(kf)
+    r /= 1.0*len(kf)
+    f1 /= 1.0*len(kf)
+    f1_all /= len(kf)
+
+    return s, r, f1, f1_all
+    
+def test(n=50, c=30.5, k=10):
     f1 = 0
+    f1_all = 0
     for i in range(0,n):
-        _,_,f1_,_ = cv(3, c)
+        _,_,f1_, f1_all_ = cv(k, c)
         f1+= f1_
-    return f1/n
+        f1_all += f1_all_
+        
+    return f1/n, f1_all/n
 
 def findc(title):
     start = time.time()
     score = []
-    c = np.arange(5, 30, 1)
+    score0 = []
+    score1 = []
+    score2 = []
+    c = np.arange(10, 20, 1)
     index = 0
     for i in c:
         print '-'*30
@@ -229,9 +199,16 @@ def findc(title):
         print('c='+str(i))
         print '-'*30
         index = index + 1
-        score.append(test(40, i))
+        result = test(40, i)
+        score.append(result[0])
+        score0.append(result[1][0])
+        score1.append(result[1][1])
+        score2.append(result[1][2])
     plt.figure()
-    plt.plot(c, score)
+    l1, l2, l3, l4 = plt.plot(c, score, 'b-', c, score0, 'g--', c, score1, 'r--', c, score2, 'b--')
     plt.title(title)
+    plt.xlabel('c')
+    plt.ylabel('score f1')
+    plt.legend([l1, l2, l3, l4], ['Average', 'Negative', 'Neutral', 'Positive'], loc=4, bbox_to_anchor=(1, 1))
     end = time.time()
     print('time: ' + str(end-start))

@@ -53,9 +53,9 @@ def metamaping(corpus):
         dict_listwords[word] = word
     #3
     #os.system("java -jar F:\code\python\lvtn\src\metamap5.jar F:\code\python\lvtn\src\input.txt F:\code\python\lvtn\src\metamap_output.txt")
-    output = pd.read_csv("F:\\code\\python\\lvtn\\src\\metamap_output.txt", sep=" ", header=None)
+    output = pd.read_csv("mesh.csv")
     for i in range(output.shape[0]):
-        dict_listwords[output[0][i]] = output[1][i]
+        dict_listwords[output['key'][i]] = output['value'][i]
     words = [[dict_listwords[w] for w in sen] for sen in words]
     result = [reduce(lambda x, y: x+' '+y, sen) for sen in words]
     return result
