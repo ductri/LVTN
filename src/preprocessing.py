@@ -12,15 +12,24 @@ from nltk.stem.snowball import SnowballStemmer
 import nltk
 import re
 import os
+from nltk.stem.wordnet import WordNetLemmatizer
 
 def preprocessing(corpus):
     # Lower text
     corpus = [sen.lower() for sen in corpus]
     corpus = remove_special_char(corpus)
     corpus = label_number(corpus)
-    corpus = filter_stopwords(corpus)
+    #corpus = filter_stopwords(corpus)
     corpus = metamaping(corpus)
+    
+    #corpus = stemming(corpus)
+    corpus = lemmatization(corpus)
     corpus = stemming(corpus)
+    #pos = pos_tagging(corpus)    
+    #corpus_pos = stemming2(pos)
+    #corpus = [[w[0]+w[1] for w in sen] for sen in corpus_pos]
+    #corpus = [reduce(lambda x,y: x+' '+y, sen) for sen in corpus]
+    
     return corpus
 def label_number(corpus):
     p=re.compile('([0-9]*([\.])?)[0-9]+')
@@ -59,13 +68,33 @@ def metamaping(corpus):
     words = [[dict_listwords[w] for w in sen] for sen in words]
     result = [reduce(lambda x, y: x+' '+y, sen) for sen in words]
     return result
-    
+
+def pos_tagging(corpus):
+    pos_tag = [nltk.pos_tag(nltk.word_tokenize(sen)) for sen in corpus]
+    return pos_tag
+
 def stemming(corpus):
     stemmer = SnowballStemmer("english")
     temp = [[stemmer.stem(w) for w in sen.split(' ')] for sen in corpus]
     result = [reduce(lambda x,y: x+' '+y, sen) for sen in temp]
     return result
+
+def stemming2(pos):
+    corpus_pos =[zip(*sen) for sen in pos]
+    corpus_pos = zip(*corpus_pos)
     
+    stemmer = SnowballStemmer("english")
+    stem = [[stemmer.stem(w) for w in sen] for sen in corpus_pos[0]]
+    corpus_pos[0] = stem
+    corpus_pos = zip(corpus_pos[0], corpus_pos[1])    
+    corpus_pos = [zip(sen[0], sen[1]) for sen in corpus_pos]
+    return corpus_pos
+
+def lemmatization(corpus):
+    lmtzr = WordNetLemmatizer()
+    temp = [[lmtzr.lemmatize(w) for w in sen.split(' ')] for sen in corpus]
+    result = [reduce(lambda x,y: x+' '+y, sen) for sen in temp]
+    return result
     
 src= "F:\\code\\python\\lvtn\\standard.csv"
 src_data_raw = pd.read_csv(src, dtype={'sen':str})
@@ -73,20 +102,17 @@ src_data = preprocessing(src_data_raw['sen'])
 #src_data = src_data_raw['sen']
 #src= "F:\\code\\python\\lvtn\\so-cal.csv"
 def load(is_one_set=False):
-    #print 'begin loading'
+    
     data = src_data_raw.copy()
     data['sen'] =src_data
-    #print 'copy 1 done'
+    
     data_size = data.shape[0]
     
-    # Just classify 0 and the others
-    #data.loc[data['lab']!=0,'lab']=1
-    #data.loc[data['lab']!=2,'lab']=1
-    #data.loc[data['lab']==2,'lab']=0
-    # Shuffle dataframe
     shuffle_index = np.arange(data_size)
     
+    #TODO random here
     np.random.shuffle(shuffle_index)
+    
     data = data.iloc[shuffle_index, :]
     data.index = np.arange(data_size)
     #print 'suffering done'    
@@ -120,27 +146,6 @@ def load(is_one_set=False):
         return training, test, raw_training, raw_test, raw
     else:
         return data, src_data_raw.copy()
-def load_raw():
-    data = pd.read_csv(src, dtype={'sen':str})
-    data_size = data.shape[0]
-    
-    # Just classify 0 and the others
-    #data.loc[data['lab']!=0,'lab']=1
-    #data.loc[data['lab']!=2,'lab']=1
-    #data.loc[data['lab']==2,'lab']=0
-    # Shuffle dataframe
-    shuffle_index = np.arange(data_size)
-    np.random.shuffle(shuffle_index)
-    data = data.iloc[shuffle_index, :]
-    data.index = np.arange(data_size)
-    training_size = data.shape[0]*2/3
-            
-    training = data[0:training_size]
-    test = data[training_size:]
-    test.index = np.arange(test.shape[0])
-    #print 'training_size: '+str(training.shape[0])
-    #print 'test_size: '+str(test.shape[0])
-    return training, test
-            
+
 
     
