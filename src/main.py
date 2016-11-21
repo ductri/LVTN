@@ -154,16 +154,16 @@ def run(training_data, test_data, raw_training, raw_test, c):
     test_x = normalize(test_x)
     test_y = test_data['lab']*1.0
     
-    #data_x = np.concatenate((data_x, training_change_phrase(training_data['sen'])), axis=1)
-    #test_x = np.concatenate((test_x, training_change_phrase(test_data['sen'])), axis=1)
+    data_x = np.concatenate((data_x, training_change_phrase(training_data['sen'])), axis=1)
+    test_x = np.concatenate((test_x, training_change_phrase(test_data['sen'])), axis=1)
 
 ##    #SOCAL
-    #socal = pd.read_csv(base_directory + "so-cal.csv")
-    #temp = pd.merge(training_data, socal, on='id')
-    #data_x = np.concatenate((data_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
+    socal = pd.read_csv(base_directory + "so-cal.csv")
+    temp = pd.merge(training_data, socal, on='id', how='left')
+    data_x = np.concatenate((data_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
     
-    #temp = pd.merge(test_data, socal, on='id')
-    #test_x = np.concatenate((test_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
+    temp = pd.merge(test_data, socal, on='id')
+    test_x = np.concatenate((test_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
     
     #10
     clf = svm.SVC(decision_function_shape='ovr', C=c, kernel='rbf', 

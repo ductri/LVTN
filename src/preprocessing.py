@@ -19,7 +19,7 @@ def preprocessing(corpus):
     corpus = [sen.lower() for sen in corpus]
     corpus = remove_special_char(corpus)
     corpus = label_number(corpus)
-    #corpus = filter_stopwords(corpus)
+    corpus = filter_stopwords(corpus)
     corpus = metamaping(corpus)
     
     #corpus = stemming(corpus)
@@ -61,10 +61,11 @@ def metamaping(corpus):
     for word in listwords:
         dict_listwords[word] = word
     #3
-    #os.system("java -jar F:\code\python\lvtn\src\metamap5.jar F:\code\python\lvtn\src\input.txt F:\code\python\lvtn\src\metamap_output.txt")
-    output = pd.read_csv("mesh.csv")
+    #os.system("java -jar F:\code\python\lvtn\src\metamap2.jar F:\code\python\lvtn\src\input.txt F:\code\python\lvtn\src\metamap_output.txt")
+    #output = pd.read_csv("mesh.csv")
+    output = pd.read_table("F:\code\python\lvtn\src\metamap_output.txt", sep=' ', header=None)
     for i in range(output.shape[0]):
-        dict_listwords[output['key'][i]] = output['value'][i]
+        dict_listwords[output[0][i]] = output[1][i]
     words = [[dict_listwords[w] for w in sen] for sen in words]
     result = [reduce(lambda x, y: x+' '+y, sen) for sen in words]
     return result

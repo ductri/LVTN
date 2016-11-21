@@ -13,7 +13,7 @@ from sklearn import metrics
 
 training_data, test_data, raw_training, raw_test, raw = preprocessing.load()
 
-src = 'F:\\code\\python\\lvtn\\metamap\\metamapQ\\metamapQ\\output.json'
+src = 'F:\code\python\lvtn\MetamapNegation\output.json'
 metamap = pd.read_json(src)
 x = metamap.data
 for i in x:    
