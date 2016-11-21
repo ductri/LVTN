@@ -38,7 +38,7 @@ training_data, test_data, raw_training, raw_test, raw = preprocessing.load()
 def training_ngram(corpus):
     vectorizer = CountVectorizer(min_df=3, decode_error="ignore", analyzer="word", 
                                         lowercase=True, binary=True, ngram_range=(1,2),
-                                        stop_words=None)
+                                        stop_words='english') #stop_words = 'enghlish' is the best
     data_array = vectorizer.fit_transform(corpus).toarray()
 #    vectorizer = TfidfVectorizer(min_df=3, decode_error="ignore", analyzer="word", 
 #                                        lowercase=True, binary=True, ngram_range=(1,2),
@@ -64,10 +64,14 @@ def training_change_phrase(corpus):
             "mild","drop","fewer"]
     
     stemmer = SnowballStemmer("english")
-    BAD = [stemmer.stem(w) for w in BAD]
-    GOOD = [stemmer.stem(w) for w in GOOD]
-    MORE = [stemmer.stem(w) for w in MORE]
-    LESS = [stemmer.stem(w) for w in LESS]
+#    BAD = [stemmer.stem(w) for w in BAD]
+#    GOOD = [stemmer.stem(w) for w in GOOD]
+#    MORE = [stemmer.stem(w) for w in MORE]
+#    LESS = [stemmer.stem(w) for w in LESS]
+    BAD = preprocessing.stemming(preprocessing.lemmatization(BAD))
+    GOOD = preprocessing.stemming(preprocessing.lemmatization(GOOD))
+    MORE = preprocessing.stemming(preprocessing.lemmatization(MORE))
+    LESS = preprocessing.stemming(preprocessing.lemmatization(LESS))
     #print 'len change phrase: '+str(len(BAD)+len(GOOD)+len(MORE)+len(LESS))
     def sen2vec(sen):
         words = sen.split(' ')
@@ -161,7 +165,7 @@ def run(training_data, test_data, raw_training, raw_test, c):
     socal = pd.read_csv(base_directory + "so-cal.csv")
     temp = pd.merge(training_data, socal, on='id', how='left')
     data_x = np.concatenate((data_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
-    
+
     temp = pd.merge(test_data, socal, on='id')
     test_x = np.concatenate((test_x, np.array(temp['socal']).reshape((temp.shape[0],1))), axis=1)
     
@@ -228,7 +232,7 @@ def test(n=50, c=17, k=10):
         a += a_
         
     return f1/n, f1_all/n, a
-
+a=[]
 def findc(title=''):
     start = time.time()
     score = []

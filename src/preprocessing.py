@@ -19,7 +19,7 @@ def preprocessing(corpus):
     corpus = [sen.lower() for sen in corpus]
     corpus = remove_special_char(corpus)
     corpus = label_number(corpus)
-    corpus = filter_stopwords(corpus)
+    #corpus = filter_stopwords(corpus) #better result
     corpus = metamaping(corpus)
     
     #corpus = stemming(corpus)
