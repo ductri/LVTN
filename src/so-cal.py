@@ -36,7 +36,7 @@ def metamaping(corpus):
 
 start = time.time()
 print("start")
-src= "F:\\code\\python\\lvtn\\standard.csv"
+src= "F:\\code\\python\\lvtn\\new.csv"
 data = pd.read_csv(src, dtype={'sen':str})
 data['sen'] = metamaping(data['sen'])
 
@@ -47,7 +47,7 @@ for i in range(data.shape[0]):
                   data = {'user_input':data['sen'][i]})
     soup = BeautifulSoup(r.text, 'html.parser')
     data.loc[i, 'socal'] = float(soup.find_all('p')[1].text[1:-1])
-    print("Dont "+str(i))
+    print("Done "+str(i))
 data.to_csv("F:\\code\\python\\lvtn\\so-cal.csv")
 end = time.time()
 print("finish")

@@ -20,7 +20,7 @@ def preprocessing(corpus):
     corpus = remove_special_char(corpus)
     corpus = label_number(corpus)
     #corpus = filter_stopwords(corpus) #better result
-    corpus = metamaping(corpus)
+    #corpus = metamaping(corpus)
     
     #corpus = stemming(corpus)
     corpus = lemmatization(corpus)
@@ -65,7 +65,7 @@ def metamaping(corpus):
     #output = pd.read_csv("mesh.csv")
     output = pd.read_table("F:\code\python\lvtn\src\metamap_output.txt", sep=' ', header=None)
     for i in range(output.shape[0]):
-        dict_listwords[output[0][i]] = output[1][i]
+        dict_listwords[output[0][i]] = output[1][i].upper()
     words = [[dict_listwords[w] for w in sen] for sen in words]
     result = [reduce(lambda x, y: x+' '+y, sen) for sen in words]
     return result

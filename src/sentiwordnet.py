@@ -29,13 +29,30 @@ def score_word_with_tag(word):
     try:
         senti = swn.senti_synset(word+'.1')
         ##print senti
+#        if senti.pos_score() > senti.neg_score() and senti.pos_score() >= senti.obj_score():
+#            score=1
+#        elif senti.pos_score() < senti.neg_score() and senti.neg_score() >= senti.obj_score():
+#            score=-1
+#        else: score=0
         score = senti.pos_score() - senti.neg_score()
     except nltk.corpus.reader.wordnet.WordNetError:
         score = 0
     return score
-    
+
+
 def score_sen(sen):
+    index = 0 
     text = nltk.word_tokenize(sen)
+#    pre = preprocessing.lemmatization(text)
+#    pre = preprocessing.stemming(pre)
+#    x=[]
+#    for w in pre:
+#        if w in BAD or w in GOOD:
+#            index += 1
+#            print index
+#            continue
+#        else: x.append(w)
+    
     tagged_words = nltk.pos_tag(text, tagset='universal')
     ##print 'tagged_words:' + str(tagged_words)
     words_with_tag = map(lambda x: convert(x), tagged_words)
@@ -52,7 +69,7 @@ def score(corpus, lab):
         if x>0.4:
             return 2 
         elif x < -0.4:
-            return 0 
+            return 0
         else: return 1
     ave = sum(list_score)*1.0/len(list_score)
     scale = max(map(abs,list_score))
