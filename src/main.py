@@ -40,7 +40,8 @@ socal = pd.read_csv(base_directory + "so-cal.csv")
 pca = LinearDiscriminantAnalysis()
 pca.fit(socal['socal'].reshape(-1,1), socal['lab'])
 socal['y'] = pca.transform(socal['socal'].reshape(-1,1))
-predict2 = []
+
+
 for s in socal['socal']:
     if s<-0.5:
         predict2.append(0)
@@ -76,6 +77,10 @@ def training_change_phrase(corpus):
             "lower","decrease","fall","low","reduce","decline","less","little",
             "mild","drop","fewer"]
     
+    BAD = map(str.lower, BAD)
+    GOOD = map(str.lower, GOOD)    
+    MORE = map(str.lower, MORE)    
+    LESS = map(str.lower, LESS)
     BAD = preprocessing.stemming(preprocessing.lemmatization(BAD))
     GOOD = preprocessing.stemming(preprocessing.lemmatization(GOOD))
     MORE = preprocessing.stemming(preprocessing.lemmatization(MORE))
@@ -160,14 +165,18 @@ def training_change_phrase1(corpus):
     result = [sen2vec(sen) for sen in corpus]
     result = zip(*result)
     return result
-    
+src = 'F:\code\python\lvtn\MetamapNegation\output.json'
+metamap = pd.read_json(src)
+neg = map(len, metamap['negations'])
+metamap['neg'] = neg
+neg_bin = map(int, metamap['neg']!=0)
+metamap['neg_bin'] = neg_bin
 def training_negation(training_data, test_data):
-    src = 'F:\code\python\lvtn\MetamapNegation\output.json'
-    metamap = pd.read_json(src)
+
     #training_data, test_data, raw_training, raw_test, raw = preprocessing.load()
-    training_data = pd.merge(training_data, metamap, how='inner', on='id') #TODO
+    training_data = pd.merge(training_data, metamap, how='left', on='id') #TODO
     step1a(training_data)
-    test_data = pd.merge(test_data, metamap, how='inner', on='id') #TODO
+    test_data = pd.merge(test_data, metamap, how='left', on='id') #TODO
     step1a(test_data)
     return training_data, test_data
     
@@ -200,11 +209,18 @@ def step1a(data):
         if len(neg)==0:
             continue
         else:
+            list_effected_words = []
             for neg_item in neg:
-                data.iloc[i,1] = sen.replace(neg_item['negex'], 'NEGATION')
-
-
-
+                for w in neg_item['effectedWords']:
+                    list_effected_words.append(w['words'].encode('ascii'))
+            list_effected_words = map(str.lower, list_effected_words)
+            list_effected_words = list(set(list_effected_words))
+            list_effected_words = preprocessing.lemmatization(list_effected_words)
+            list_effected_words = preprocessing.stemming(list_effected_words)
+            for w in list_effected_words:
+                sen = sen.replace(w, w+'_NEG')
+                #print 'NEG'*30
+            data.iloc[i,1] = sen
 def normalize(data):
     ##print 'data:'+str(len(data))
     scale = np.max(np.abs(data), axis=0)
@@ -226,36 +242,45 @@ def normalize(data):
 
 def run(training_data, test_data, raw_training, raw_test, c):
     
+    data_y = training_data['lab']*1.0
+    test_y = test_data['lab']*1.0
+    
+    #NEGATION
     #training_data, test_data = training_negation(training_data, test_data)
+
+    
     
     #training_data['sen'] = preprocessing.metamaping(training_data['sen'])
     #test_data['sen'] = preprocessing.metamaping(test_data['sen'])
     
     
-    
+    #NGRAM    
     data_x, ngram = training_ngram(training_data.sen)
     data_x = normalize(data_x)
-    data_y = training_data['lab']*1.0
     test_x = ngram.transform(test_data.sen).toarray()
     test_x = normalize(test_x)
-    test_y = test_data['lab']*1.0
     
+    #CHANGE PHRASE
     change_phrase_data_x = training_change_phrase(training_data['sen'])
     change_phrase_test_x = training_change_phrase(test_data['sen'])
     data_x = np.concatenate((data_x, change_phrase_data_x), axis=1)
     test_x = np.concatenate((test_x, change_phrase_test_x), axis=1)
     
+    #NEGATION
+#    neg_vec_x = np.array((pd.merge(training_data, metamap, on='id', how='left')['neg']))
+#    neg_vec_x = neg_vec_x.reshape(neg_vec_x.shape[0],1)
+#    data_x = np.concatenate((data_x, neg_vec_x), axis=1)
+#    
+#    neg_vec_x = np.array((pd.merge(test_data, metamap, on='id', how='left')['neg']))
+#    neg_vec_x = neg_vec_x.reshape(neg_vec_x.shape[0],1)
+#    test_x = np.concatenate((test_x, neg_vec_x), axis=1)
     
     
-    
-##    #SOCAL
-    
-    
-    temp = pd.merge(training_data, socal, on='id', how='left')
-    data_x = np.concatenate((data_x, np.array(temp['y']).reshape((temp.shape[0],1))), axis=1)
-
-    temp = pd.merge(test_data, socal, on='id', how='left')
-    test_x = np.concatenate((test_x, np.array(temp['y']).reshape((temp.shape[0],1))), axis=1)
+    #SOCAL
+#    temp = pd.merge(training_data, socal, on='id', how='left')
+#    data_x = np.concatenate((data_x, np.array(temp['y']).reshape((temp.shape[0],1))), axis=1)
+#    temp = pd.merge(test_data, socal, on='id', how='left')
+#    test_x = np.concatenate((test_x, np.array(temp['y']).reshape((temp.shape[0],1))), axis=1)
     
     #10
     clf = svm.SVC(decision_function_shape='ovr', C=c, kernel='rbf', 

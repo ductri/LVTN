@@ -1,5 +1,77 @@
+New 
+---------------------------
       id  sen
 lab          
 0     31   31
 1    157  157
 2    182  182
+
+Old
+---------------------------
+      id  sen
+lab          
+0     46   46
+1    136  136
+2    150  150
+
+-----------------------------
+OLD
+-----------------------------
+risk            47
+pain            13
+mortal           7
+sever            6
+cancer           5
+diabet           5
+fatal            4
+sensit           4
+disord           3
+death            2
+loss             2
+acut             2
+complic          2
+recurr           2
+fatigu           2
+intens           2
+advers           2
+
+improv       35
+effect       17
+posit        12
+mild         11
+prevent       9
+efficaci      3
+success       3
+use           3
+relief        2
+safe          2
+support       2
+
+
+improv     32
+increas    31
+more       27
+high       13
+greater    11
+posit       9
+higher      9
+elev        8
+addit       6
+enhanc      4
+peak        3
+veri        2
+highest     2
+quit        2
+
+reduc      33
+low        16
+lower      16
+decreas    14
+le         12
+reduct     12
+mild        9
+prevent     7
+fail        3
+littl       2
+slight      2
+onli        2

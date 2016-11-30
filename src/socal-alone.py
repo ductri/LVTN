@@ -44,6 +44,9 @@ print(classification_report(test_y, predict, target_names=target_names))
 pos=socal[socal['lab']==2]
 neu=socal[socal['lab']==1]
 neg=socal[socal['lab']==0]
+
+
+
 plt.figure()
 plt.plot(pos.socal, np.zeros(pos.shape[0])+2, 'ro', neu.socal, np.zeros(neu.shape[0])+1, 'bo', neg.socal, np.zeros(neg.shape[0]), 'go')
 plt.axis([-5, 5, -0.5, 2.5])
