@@ -3,3 +3,4 @@ metamap/
 SentiWordNet_3.0.0/
 SentiWordNet_3.0.0.tgz
 stanford_nlp/*
+negation-apple-parser/*
