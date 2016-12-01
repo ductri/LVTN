@@ -97,7 +97,7 @@ def lemmatization(corpus):
     result = [reduce(lambda x,y: x+' '+y, sen) for sen in temp]
     return result
     
-src= "F:\\code\\python\\lvtn\\standard_extend_fixed_ratio.csv" #standard_extend_fixed_ratio
+src= "F:\\code\\python\\lvtn\\relab_dataset.csv" #standard_extend_fixed_ratio
 src_data_raw = pd.read_csv(src, dtype={'sen':str})
 src_data = preprocessing(src_data_raw['sen'])
 #src_data = src_data_raw['sen']

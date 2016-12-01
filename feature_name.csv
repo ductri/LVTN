@@ -1,0 +1,533 @@
+,0
+0,accord
+1,accur
+2,ace
+3,ace inhibitor
+4,achiev
+5,acid
+6,activ
+7,acupunctur
+8,acut
+9,addit
+10,adhd
+11,adjuv
+12,adolesc
+13,adult
+14,advanc
+15,advantag
+16,advers
+17,advic
+18,aerob
+19,affect
+20,affect_neg
+21,age
+22,agent
+23,agit
+24,alcohol
+25,allopurinol
+26,alon
+27,amelior
+28,analges
+29,analgesia
+30,analysi
+31,anesthet
+32,ani
+33,ankyloglossia
+34,antibiot
+35,antidepress
+36,appear
+37,applic
+38,approach
+39,approxim
+40,ass
+41,assess
+42,associ
+43,associ increas
+44,associ signific
+45,asthma
+46,attribut
+47,avail
+48,base
+49,baselin
+50,basi
+51,becaus
+52,befor
+53,behavior
+54,behaviour
+55,benefici
+56,benefici effect
+57,benefit
+58,better
+59,birth
+60,block
+61,blood
+62,blood pressur
+63,bp
+64,brain
+65,breast
+66,breast cancer
+67,breast_neg
+68,breastfeed
+69,cancer
+70,cardiac
+71,cardiovascular
+72,care
+73,caus
+74,cell
+75,cessat
+76,chang
+77,chest
+78,child
+79,childhood
+80,cholesterol
+81,chronic
+82,cinnamon
+83,circumcis
+84,clinic
+85,clinic benefit
+86,clinic outcom
+87,clinic practic
+88,clinic trial
+89,cognit
+90,cohort
+91,combin
+92,common
+93,compar
+94,compar placebo
+95,complic
+96,conclud
+97,conclus
+98,condit
+99,confid
+100,confid interv
+101,confirm
+102,consid
+103,consider
+104,consist
+105,consumpt
+106,continu
+107,contrast
+108,control
+109,coronari
+110,corticosteroid
+111,cost
+112,ct
+113,current
+114,current evid
+115,daili
+116,data
+117,day
+118,death
+119,decis
+120,decis make
+121,decreas
+122,definit
+123,degre
+124,dementia
+125,demonstr
+126,depend
+127,depress
+128,design
+129,despit
+130,determin
+131,develop
+132,dexamethason
+133,diabet
+134,diagnosi
+135,diastol
+136,did
+137,did negation
+138,dietari
+139,differ
+140,digit
+141,digit confid
+142,digit day
+143,digit digit
+144,digit mg
+145,digit mm
+146,digit month
+147,digit patient
+148,digit week
+149,digit year
+150,direct
+151,discharg
+152,diseas
+153,disord
+154,doe
+155,doe negation
+156,dose
+157,dose digit
+158,drug
+159,durat
+160,dure
+161,dysfunct
+162,earli
+163,educ
+164,effect
+165,effect compar
+166,effect reduc
+167,effect treatment
+168,efficaci
+169,effici
+170,elder
+171,elev
+172,elev_neg
+173,enhanc
+174,episod
+175,especi
+176,establish
+177,evalu
+178,event
+179,evid
+180,exercis
+181,experienc
+182,explor
+183,exposur
+184,express
+185,facilit
+186,factor
+187,fast
+188,fat
+189,fatigu
+190,feasibl
+191,featur
+192,femal
+193,fewer
+194,follow
+195,format
+196,frenotomi
+197,frequenc
+198,frequent
+199,function
+200,furthermor
+201,futur
+202,futur studi
+203,gastric
+204,glucos
+205,glycem
+206,goal
+207,good
+208,greater
+209,group
+210,guid
+211,guidelin
+212,ha
+213,half
+214,hazard
+215,hazard ratio
+216,hctz
+217,health
+218,heart
+219,help
+220,hf
+221,hg
+222,high
+223,higher
+224,hospit
+225,howev
+226,hypertens
+227,identifi
+228,il
+229,il digit
+230,immun
+231,impact
+232,impair
+233,import
+234,improv
+235,improv clinic
+236,incid
+237,includ
+238,incorpor
+239,increas
+240,increas risk
+241,independ
+242,indic
+243,individu
+244,infant
+245,infarct
+246,infect
+247,inflammatori
+248,inform
+249,inhal
+250,inhibitor
+251,initi
+252,inject
+253,insuffici
+254,intak
+255,intens
+256,interv
+257,interv digit
+258,intervent
+259,invers
+260,investig
+261,larg
+262,le
+263,le effect
+264,lead
+265,lesion
+266,level
+267,life
+268,lifestyl
+269,like
+270,limit
+271,lipid
+272,littl
+273,local
+274,locat
+275,long
+276,long term
+277,losartan
+278,loss
+279,low
+280,low dose
+281,lower
+282,lung
+283,lung function
+284,major
+285,make
+286,manag
+287,mark
+288,marker
+289,matern
+290,measur
+291,mediat
+292,medic
+293,men
+294,mental
+295,metabol
+296,metabol syndrom
+297,method
+298,mg
+299,migrain
+300,mild
+301,mild moder
+302,mm
+303,mm hg
+304,moder
+305,modifi
+306,month
+307,mood
+308,mortal
+309,multipl
+310,muscl
+311,myocardi
+312,myocardi infarct
+313,need
+314,need determin
+315,negat
+316,negation
+317,negation differ
+318,negation increas
+319,new
+320,newborn
+321,non
+322,normal
+323,nsaid
+324,number
+325,obes
+326,object
+327,observ
+328,obtain
+329,of_neg
+330,offer
+331,older
+332,ongo
+333,onli
+334,onset
+335,oper
+336,opioid
+337,optim
+338,option
+339,oral
+340,organ
+341,outcom
+342,overal
+343,pain
+344,pain_neg
+345,parent
+346,partial
+347,particular
+348,patient
+349,patient digit
+350,patient receiv
+351,patient treat
+352,patient undergo
+353,pcos
+354,pelvic
+355,perform
+356,persist
+357,person
+358,phase
+359,physic
+360,placebo
+361,plasma
+362,point
+363,poor
+364,popul
+365,posit
+366,possibl
+367,post
+368,post oper
+369,postop
+370,potenti
+371,practic
+372,predict
+373,predictor
+374,pregnanc
+375,preliminari
+376,prescript
+377,prescript ace
+378,presenc
+379,present
+380,present studi
+381,pressur
+382,prevent
+383,previous
+384,primari
+385,primari care
+386,problem
+387,procedur
+388,profil
+389,prognosi
+390,program
+391,prolong
+392,promis
+393,proport
+394,prospect
+395,prospect studi
+396,protect
+397,protein
+398,provid
+399,qualiti
+400,qualiti life
+401,quit
+402,quit smoke
+403,radiat
+404,random
+405,rate
+406,ratio
+407,ratio digit
+408,receiv
+409,recent
+410,recommend
+411,recurr
+412,reduc
+413,reduc risk
+414,reduct
+415,regard
+416,regimen
+417,relaps
+418,relat
+419,relationship
+420,relief
+421,report
+422,requir
+423,research
+424,research need
+425,respons
+426,result
+427,review
+428,risk
+429,risk factor
+430,role
+431,routin
+432,safe
+433,safe effect
+434,safeti
+435,sampl
+436,sampl size
+437,score
+438,screen
+439,second
+440,select
+441,self
+442,sensit
+443,serum
+444,set
+445,sever
+446,short
+447,short term
+448,shown
+449,signific
+450,signific decreas
+451,signific higher
+452,signific improv
+453,signific increas
+454,signific reduc
+455,similar
+456,simpl
+457,size
+458,small
+459,smoke
+460,smoke cessat
+461,smoker
+462,specif
+463,ssri
+464,standard
+465,statin
+466,statin therapi
+467,strategi
+468,stress
+469,stroke
+470,strong
+471,studi
+472,studi need
+473,subject
+474,substanti
+475,success
+476,suggest
+477,superior
+478,supplement
+479,support
+480,support use
+481,surgeri
+482,surgic
+483,surviv
+484,sustain
+485,symptom
+486,symptomat
+487,syndrom
+488,systol
+489,systol bp
+490,target
+491,techniqu
+492,term
+493,term clinic
+494,test
+495,therapeut
+496,therapi
+497,therefor
+498,time
+499,toler
+500,tool
+501,topic
+502,total
+503,toxic
+504,train
+505,treat
+506,treatment
+507,treatment option
+508,trial
+509,trial need
+510,trigger
+511,troponin
+512,type
+513,ulcer
+514,ulcer_neg
+515,ultrasound
+516,undergo
+517,use
+518,user
+519,variabl
+520,wa
+521,wa associ
+522,wa effect
+523,wa negation
+524,wa similar
+525,week
+526,weight
+527,weight loss
+528,wheez
+529,woman
+530,year
+531,year age

@@ -10,9 +10,9 @@ Old
 ---------------------------
       id  sen
 lab          
-0     46   46
-1    136  136
-2    150  150
+0     46   46	14%
+1    136  136	41%
+2    150  150	45%
 
 -----------------------------
 OLD
@@ -75,3 +75,7 @@ fail        3
 littl       2
 slight      2
 onli        2
+
+
+- Giảm phần âm, socal
+- Thử change phrase nhận cả GOOD, BAD riêgn

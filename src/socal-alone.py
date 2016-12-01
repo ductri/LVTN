@@ -71,3 +71,7 @@ def remove_some(corpus):
     temp = [[remove(w) for w in sen.split(' ')] for sen in x]
     result = [reduce(lambda x,y: x+' '+y, sen) for sen in temp]
     return result
+    
+
+x = socal[socal.socal<0]['socal'] - 1
+socal.loc[socal.socal<0, 'socal']  = x

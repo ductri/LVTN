@@ -1,0 +1,185 @@
+,id,sen,lab,negations,neg,neg_bin,predict
+0,258,in conclus  carvedilol  a compar against atenolol  bisoprolol  metoprolol and nebivolol in random direct comparison trial  signific reduc all caus mortal in systol hf patient ,2,[],0,0,2.0
+1,279,the result suggest that opioid therapi ha a posit effect on pain and mood but littl effect on activ and sleep ,2,[],0,0,2.0
+2,164,over digit month  person with prehypertens and stage digit hypertens can sustain multipl lifestyl modif that improv control of blood pressur and could reduc the risk for chronic diseas ,2,[],0,0,2.0
+3,70,the m wa defin on the basi of meet > or  digit of digit criterion from the current nation cholesterol educ program guidelin in a small subgroup of patient with high densiti lipoprotein cholesterol determin at baselin and on the basi of > or  digit of digit criterion in the total popul  exclud the high densiti lipoprotein cholesterol criterion ,1,[],0,0,1.0
+4,1361,acut coffe consumpt in non stress condit activ saa and bp but not salivari cortisol  indic activ of the sympathet nervous system ,1,[],0,0,1.0
+5,757,the preoper dexamethason should be use a routin in patient undergo laparoscop cholecystectomi ,1,[],0,0,1.0
+6,575,this studi is use in that it compar two common method of prepar of the upper limb prior to tourniquet inflat and which have NEGATION previous been compar in this context_NEG ,1,"[{u'negex': u'not', u'effectedWords': [{u'words': u'Context'}]}]",1,1,1.0
+7,200,those with histolog find of sever gastric atrophi  corpus predomin gastriti  or intestin metaplasia are at increas risk ,0,[],0,0,0.0
+8,657,howev  monitor should be strengthen in order to prevent and control the advers effect such a sever hypotens and sever bradycardia ,0,[],0,0,0.0
+9,392,the administr of three local cortivazol inject wa follow by suppress of the corticotrop axi that persist beyond digit day after epidur inject and recov more rapid after intra articular inject ,2,[],0,0,1.0
+10,192,these find have implic for the treatment and prognosi of childhood asthma  target prevent and educ strategi and understand the onset of asthma in adult life ,2,[],0,0,2.0
+11,351,it may exert it anti inflammatori activ by inhibit of a number of differ molecul that play a role in inflamm ,1,[],0,0,1.0
+12,28,when we compar acupunctur with no treatment there appear to be a benefit from acupunctur  but acupunctur appear to be le effect than ht ,2,[],0,0,2.0
+13,127,our result demonstr that drug induc suppress of phk activ is associ with resolut of psoriat activ a assess by clinic  histolog and immunohistochem criterion  and support the hypothesi that effect antipsoriat activ may be achiev through modul of phk activ ,1,[],0,0,1.0
+14,41,ankyloglossia is a relat common find in the newborn popul and repres a signific proport of breastfeed problem ,1,[],0,0,0.0
+15,62,one week of continu auricular acupunctur decreas the pain and disabl experienc by woman with pregnanc relat low back and posterior pelvic pain ,2,[],0,0,2.0
+16,329,the gps counsel for physic activ use the pace protocol influenc mediat and biometr outcom in an italian primari care context ,1,[],0,0,1.0
+17,91,the combin of curcumin and quercetin appear to reduc the number and size of ileal and rectal adenoma in patient with fap without appreci toxic ,2,[],0,0,2.0
+18,345,in a pool analysi of data from digit statin trial  intens dose statin therapi wa associ with an increas risk of new onset diabet compar with moder dose statin therapi ,0,[],0,0,0.0
+19,206,this evid of a dose respons effect provid further support for the potenti causal natur of iatrogen acid suppress in the develop of nosocomi c difficil infect ,2,[],0,0,1.0
+20,539,dynam multipl pelvic angiographi ha signific advantag in the diagnosi of pelvic periton hernia  and can provid a more object basi for the diagnosi of function defec disord ,1,[],0,0,2.0
+21,283,earli administr of oral steroid medic in patient with acut sciatica had NEGATION effect on most paramet_NEG studi ,1,"[{u'negex': u'no significant', u'effectedWords': [{u'words': u'Parameters'}]}]",1,1,1.0
+22,651,in this open label  random trial involv patient with local advanc pancreat cancer with diseas control after digit month of induct chemotherapi  there wa NEGATION differ in overal surviv with chemoradiotherapi compar with chemotherapi alon and there wa NEGATION differ in overal surviv with gemcitabin compar with gemcitabin plus erlotinib use_NEG a mainten therapi ,0,"[{u'negex': u'no significant', u'effectedWords': [{u'words': u'used'}]}]",1,1,0.0
+23,198,it is current unclear if this is the case both for peopl with normal folat level  and for those with folat defici ,1,[],0,0,1.0
+24,299,there is evid demonstr favor effect compar to placebo  similar effect compar to nsaid  and with signific side effect includ decreas effect relat to habitu when use long term ,2,[],0,0,2.0
+25,691,compar with the tradit method  small incis punctur tracheostomi is le time consum  with fewer trauma  and fewer intraop and postop complic ,2,[],0,0,0.0
+26,150,with hctz  exercis time  digit     digit to digit     digit second  p   digit digit  and qualiti of life  digit     digit v digit     digit  p   digit digit  did not chang  wherea oxygen consumpt decreas from digit digit     digit to digit digit     digit ml min  p   digit digit  ,1,[],0,0,2.0
+27,24,nitrofurantoin is activ transport into human milk  achiev concentr in milk great exceed those in serum ,2,[],0,0,1.0
+28,1360,howev  further studi is need to compar the differ between degarelix monotherapi and these combin ,1,[],0,0,1.0
+29,1317,consid both efficaci and safeti  colchicin can be prescrib with a onc daili dosag ,1,[],0,0,1.0
+30,303,it is like that inclus of subgroup factor in futur rcts will provid inform need to improv the strength and specif of futur clinic recommend ,2,[],0,0,1.0
+31,739,this studi wa done in part that regist with japan pharmaceut inform center  number japiccti digit ,1,[],0,0,1.0
+32,1270,earli weight loss is consist identifi a a strong predictor of long term weight loss ,1,[],0,0,1.0
+33,203,woman wish to use combin oc can be reassur that their decis_NEG is NEGATION to place them at higher risk of develop cancer ,1,"[{u'negex': u'unlikely', u'effectedWords': [{u'words': u'Decision'}]}]",1,1,0.0
+34,518,the acupunctur at the acupoint select from the affect meridian base on the locat differenti and the heavi moxibust at pain point are safe and effect in the treatment of fibromyalgia syndrom and present the better persist effect a compar with the combin medic of tramadol sustain releas tablet and amitriptylin ,2,[],0,0,2.0
+35,64,onc daili dose of aza digit  gel wa well accept by patient and can offer consider dose flexibl and conveni for the patient a well a for the dermatologist ,2,[],0,0,1.0
+36,507,futur research should examin the separ impact of goal and plan  a well a examin mediat of behavior mainten in physic activ intervent target cancer survivor ,1,[],0,0,1.0
+37,705,acupunctur therapi can effect reduc the viscer fat content  be better than simpl health educ ,2,[],0,0,2.0
+38,744,pain score  opioid use  time to mobilis  and length of stay were low in both group ropivacain and group placebo ,0,[],0,0,1.0
+39,685,howev  new strategi to improv implement of intervent should be creat ,1,[],0,0,2.0
+40,268,clonidin  ssri and snris  gabapentin and relax therapi show a mild to moder effect on reduc hot flush in woman with a histori of breast cancer ,2,[],0,0,2.0
+41,349,further studi of same a independ and adjuv therapi for major depress in adult is indic ,1,[],0,0,1.0
+42,331,after heptaval pneumococc conjug vaccin introduct  child were le like to develop frequent otiti medium or have pressur equal tube insert ,2,[],0,0,1.0
+43,1284,the safeti profil of ct pdigit wa also similar to that of rp ,1,[],0,0,1.0
+44,186,evid wa insuffici to show the relat effect of exercis when compar with ht or yoga ,1,[],0,0,1.0
+45,167,when incorpor into a habitu diet  consumpt of test food with a decreas gl doe NEGATION amelior metabol risk marker in over_NEGweight_NEG subject ,1,"[{u'negex': u'not', u'effectedWords': [{u'words': u'OVER WEIGHT'}]}]",1,1,0.0
+46,1208,this would reduc the need for parent to motiv their child extrins and allow for clinic trial to investig the effect of the system ,1,[],0,0,1.0
+47,358,sever aspect of screen have been inadequ studi to determin optim method  includ which instrument to use  the age at which to screen  and which interv is most use ,1,[],0,0,1.0
+48,173,this control studi show signific short term efficaci of carbamazepin for agit with general good safeti and toler ,2,[],0,0,2.0
+49,599,the present find indic that topiram is effect and safe and thus reinforc previous data suggest that topiram is a potenti use treatment for crack cocain depend ,2,[],0,0,2.0
+50,634,tea can effici prevent orthodont toothach and oral dysfunct  which is superior to psycholog intervent and similar to medic ,2,[],0,0,1.0
+51,182,elev troponin level after acut stroke is common and is associ with ecg chang suggest of myocardi ischemia and increas risk of death ,0,[],0,0,0.0
+52,180,this should provid convinc evid for those seek a frenotomi for infant with signfic ankyloglossia ,1,[],0,0,1.0
+53,1219,therefor  supplement digit  fiodigit dure and digit hour after open surgeri for acut sigmoid diverticul  reduc post oper ssi  should be consid part of ongo qualiti improv activ relat to surgic care  accompani by few risk to the patient and littl associ cost ,1,[],0,0,2.0
+54,92,both prednisolon digit mg kg and low dose dexamethason  digit digit mg kg  were found not to differ in efficaci from the current recommend digit digit mg kg dexamethason ,0,[],0,0,2.0
+55,285,the impact of oral steroid on other outcom is suggest by this studi  but it small sampl size limit it statist power ,1,[],0,0,1.0
+56,624,futur rcts are plan to evalu the clinic efficaci of the digit intervent ,1,[],0,0,1.0
+57,101,the electron beam ct coronari calcium score predict cad event independ of standard risk factor  more accur than standard risk factor and crp  and refin framingham risk stratif ,2,[],0,0,0.0
+58,347,the efficaci of same in treat depress syndrom and disord is superior with that of placebo and compar to that of standard tricycl antidepress ,2,[],0,0,1.0
+59,1273,howev botulinum toxin type a  botoxâ®  show statist signific more increas in pressur pain threshold at digit week after inject NEGATION sever advers_NEG effect_NEG ,2,"[{u'negex': u'without', u'effectedWords': [{u'words': u'Adverse effects'}]}]",1,1,0.0
+60,1371,the therapi present the long term clinic effect and deserv to be promot in clinic practic ,2,[],0,0,1.0
+61,773,plan constraint should keep rectal vdigit below digit digit cm digit  ,1,[],0,0,1.0
+62,77,more random control trial are need  with futur trial report total mortal  total serious advers event a well a cardiovascular and renal event ,1,[],0,0,1.0
+63,162,the system lupus erythematosus self manag cours had effect in reduc fatigu and depress and improv cope skill and self efficaci ,2,[],0,0,2.0
+64,148,after digit month  exercis systol bp wa similar reduc in patient who receiv losartan  digit     digit mm hg  p < digit digit  and hctz  digit     digit mm hg  p < digit digit  ,1,[],0,0,2.0
+65,13,the procedur of a delay cord clamp time of at least digit s is safe to use and doe NEGATION compromis_NEG the preterm infant in the initi post partum adapt phase ,1,"[{u'negex': u'not', u'effectedWords': [{u'words': u'compromise'}]}]",1,1,1.0
+66,161,the cinnamon extract seem to have a moder effect in reduc fast plasma glucos concentr in diabet patient with poor glycaem control ,2,[],0,0,2.0
+67,193,these find support the use of appropri prescrib grade aerob exercis in the manag of patient with fatigu and system lupus erythematosus ,2,[],0,0,1.0
+68,1390,meanwhil  it also could improv their blood pressur and qol ,2,[],0,0,2.0
+69,312,ace inhibitor therapi prescrib at discharg in digit   n   digit  of the digit includ patient wa associ with a digit  relat decreas in the risk of digit year mortal  hazard ratio digit digit  digit  confid interv digit digit to digit digit  p   digit digit  ,1,[],0,0,2.0
+70,689,the tat oyi vaccin in associ with cart may provid an effici mean of control the hiv infect cell reservoir ,2,[],0,0,1.0
+71,1303,sipsmart is an effect intervent to decreas ssb consumpt among adult and is promis for translat into practic set ,2,[],0,0,1.0
+72,596,hfpef patient with rvd and impair rv pa coupl have more advanc heart failur ,0,[],0,0,0.0
+73,1224,vitamin d defici wa associ with higher diseas activ and sever and presenc of metabol syndrom ,0,[],0,0,0.0
+74,133,bhr at digit year of age ha a narrow risk profil  suggest that factor influenc wheez symptom express may differ from those predispos the patient to bhr ,1,[],0,0,0.0
+75,252,our result indic that onli a small proport of child with sever alopecia areata will obtain a persist benefit from topic immunotherapi ,2,[],0,0,2.0
+76,304,an unfavor score predict a high rate of complic and more fail trial of labor may help in counsel patient consid trial of labor ,2,[],0,0,0.0
+77,311,we assess the long term prognosi of these patient accord to prescript of an ace inhibitor at discharg ,1,[],0,0,1.0
+78,1274,use digit  plai cream over a digit day period substanti reduc muscl sore symptom compar to digit  plai cream or a placebo cream ,2,[],0,0,2.0
+79,348,sinc same is a natur occur compound with relat few side effect  it is a potenti import treatment for depress ,2,[],0,0,1.0
+80,12,u guidanc signific improv the accuraci of joint inject  allow a traine to rapid achiev higher accuraci than more experienc rheumatologist ,2,[],0,0,2.0
+81,1382,the result provid first evid that variabl light can be use to optim the condit in child and adolesc psychiatri in order to support the therapeut success ,2,[],0,0,1.0
+82,27,when we compar acupunctur with sham acupunctur  there wa NEGATION of a signific differ in their effect on menopaus_NEG_NEG vasomotor_NEG symptom_NEG_NEG ,1,"[{u'negex': u'no evidence', u'effectedWords': [{u'words': u'Menopausal'}]}, {u'negex': u'no evidence', u'effectedWords': [{u'words': u'menopausal symptoms'}]}, {u'negex': u'no evidence', u'effectedWords': [{u'words': u'symptoms vasomotor'}]}]",3,1,1.0
+83,339,nurseri school teacher have the highest occup risk  but most infect seem to be the result of exposur to the woman own child ,1,[],0,0,0.0
+84,305,among msm digit year of age and older with and NEGATION histori_NEG of anal condyloma  qhpv reduc the risk of anal condyloma develop_NEG ,2,"[{u'negex': u'without', u'effectedWords': [{u'words': u'History'}]}, {u'negex': u'without', u'effectedWords': [{u'words': u'development'}]}]",2,1,0.0
+85,59,howev  for woman in western countri  pre  or post menopaus  there is NEGATION an associ between intak of soy isoflavon and breast_NEG cancer_NEG ,1,"[{u'negex': u'no evidence to suggest', u'effectedWords': [{u'words': u'Breast Cancer'}]}]",1,1,0.0
+86,1356,local excis for patient with yctdigit digit rectal cancer would  thus  miss metastasi in a consider percentag and might involv the risk of signific undertreat in a number of patient ,0,[],0,0,0.0
+87,273,there wa limit evid from randomis control trial regard the use of oestrogen for the prevent and manag of pelvic organ prolaps ,1,[],0,0,1.0
+88,262,migrain in woman of childbear age signific increas the risk of ischaem but NEGATION haemorrhag_NEG stroke_NEG ,0,"[{u'negex': u'not', u'effectedWords': [{u'words': u'Haemorrhagic stroke'}]}]",1,1,0.0
+89,601,serum sdigitp protein and nse could be chang by pre oper inject ligustrazin at certain dose in elder patient undergo orthoped oper ,1,[],0,0,2.0
+90,370,predict of tolac success at the time of admiss is high depend on the initi cervic examin ,1,[],0,0,1.0
+91,65,these bioflavonoid improv earli outcom in cadaver renal transplant  possibl through ho digit induct ,2,[],0,0,2.0
+92,165,the trial doe not indic an effect of daili digit mg oral dhea on fatigu and well be  and therefor dhea treatment is not recommend in unselect femal patient with quiescent sle ,0,[],0,0,2.0
+93,364,the result of our studi show that one applic of silver nitrat can decreas the sever of pain in aphthous ulcer_NEG NEGATION signific shorten or prolong heal time ,2,"[{u'negex': u'without', u'effectedWords': [{u'words': u'Ulceration'}]}]",1,1,2.0
+94,373,half of the patient present diseas control after treatment last an averag of approxim one year ,2,[],0,0,2.0
+95,738,further studi is need with a larger sampl size ,1,[],0,0,1.0
+96,745,longitudin studi are need to verifi the long term effect of this approach ,1,[],0,0,1.0
+97,156,relev to clinic practic  this review provid comprehens understand of the effect of matern support belt for the relief of low back pain dure pregnanc which will facilit healthcar profession in provid evid base advic to their patient ,2,[],0,0,2.0
+98,1251,the analgesia method of acm could reduc the dosag of tradit analges drug and the occurr of partial advers reaction ,2,[],0,0,0.0
+99,1327,ccd increas good qualiti embryo rate by down regul the express of ro protein in ovarian granulosa cell  and correct in vivo oxid stress ,2,[],0,0,2.0
+100,1400,adjuv gliatilin in the complex therapi of progress glaucoma is appropri and effici  especi in case of system atherosclerosi and cerebrovascular insuffici ,2,[],0,0,1.0
+101,263,the coexist of oral contracept use  high blood pressur  or smoke seem to exert a greater than multipl effect on the risk of ischaem stroke associ with migrain ,0,[],0,0,0.0
+102,326,earli freNEGATIONomi did NEGATION result_NEG in an object improv in breastfeed but wa associ with improv self efficaci ,2,"[{u'negex': u'not', u'effectedWords': [{u'words': u'Result'}]}]",1,1,0.0
+103,157,low impact aerob exercis gradual increas in intens  durat and frequenc may be an effect strategi in reduc fatigu in some adult with chronic auto immun condit ,2,[],0,0,2.0
+104,1271,the relationship for alt appear specif for death due to cardiovascular diseas ,0,[],0,0,1.0
+105,1300,the prolong pharmacodynam effect of proliposom ropivacain  togeth with it delay elimin and prolong redistribut to plasma  is compat to depot relat slow releas and similar to the perform of other liposom local anesthet ,1,[],0,0,1.0
+106,620,our find suggest in vivo train should be includ to facilit profici with devic specif intub techniqu ,1,[],0,0,1.0
+107,191,the subject who had more sever asthma  especi if it develop after the age of digit and wa associ with reduc expiratori flow   were femal  or had parent who had asthma were at an increas risk of have asthma a an adult ,0,[],0,0,0.0
+108,1342,adjuv rosuvastatin treatment in patient diagnos of dvt improv crp level and diminish pt incid ,2,[],0,0,2.0
+109,357,these find need care consider in judg whether a co ordin popul base screen programm should be introduc ,1,[],0,0,1.0
+110,158,howev  fatigu is a variabl and person experi and a rang of behaviour intervent may be requir ,1,[],0,0,1.0
+111,622,passiv self ligat bracket and convent bracket can caus root resorpt  but the differ wa NEGATION signific_NEG ,1,"[{u'negex': u'not', u'effectedWords': [{u'words': u'Not significant'}]}]",1,1,0.0
+112,260,methylprednisolon inject for ct have signific benefit in reliev symptom at digit week and reduc the rate of surgeri digit year after treatment  but digit out of digit patient had surgeri within digit year ,2,[],0,0,2.0
+113,128,intens statin therapi earli after ac lead to a reduct in clinic event at digit day  consist with greater earli pleiotrop effect ,1,[],0,0,2.0
+114,105,it ha clear been shown that omega digit fatti acid supplement provid a protect benefit in heart diseas  and in particular sudden cardiac death ,2,[],0,0,2.0
+115,56,the sfa scale is a reliabl  valid  and accur measur of shoulder function in patient with ra that can be complet within digit minut ,2,[],0,0,1.0
+116,1263,the combin of in and oxymet provid addit benefit compar to in monotherapi in reliev nasal congest in subject with chronic rhiniti and allerg rhiniti without develop rhiniti medicamentosa ,2,[],0,0,2.0
+117,328,red yeast rice and therapeut lifestyl chang decreas ldl_NEG cholesterol_NEG level_NEG_NEG NEGATION increas cpk or pain_NEG level_NEG_NEG and may be a treatment option for dyslipidem patient who cannot toler statin therapi ,2,"[{u'negex': u'without', u'effectedWords': [{u'words': u'Pain level'}]}, {u'negex': u'without', u'effectedWords': [{u'words': u'ldl cholesterol level'}]}]",2,1,2.0
+118,219,these find indic that such patient benefit from earli and continu lower of ldl cholesterol to level substanti below current target level ,2,[],0,0,1.0
+119,429,the present trial evalu the toler of red yeast rice versus pravastatin in patient unabl to toler other statin becaus of myalgia ,1,[],0,0,1.0
+120,261,primari fund sourc  region of scania research and develop foundat and hässleholm hospit organ ,1,[],0,0,1.0
+121,108,specif  accord to preliminari clinic evid  parenter administr of fatti acid warrant further studi ,1,[],0,0,1.0
+122,355,in select patient  surgeri promot larg amount of weight loss with rare but sometim sever complic ,0,[],0,0,1.0
+123,81,dietari glycem index is posit associ with homa ir and preval of the metabol syndrom ,1,[],0,0,1.0
+124,138,in woman  cholecystectomi lead to the percept of le constip and slight more frequent defec but short term record show NEGATION consist chang_NEG in bowel function ,2,"[{u'negex': u'no', u'effectedWords': [{u'words': u'No change'}]}]",1,1,2.0
+125,1285,the cmp use in the studi have show a trend to signific ssi risk reduct and may be recommend to maxim patient protect ,2,[],0,0,1.0
+126,1346,this is the first doubl blind rct assess ciclosporin  in the manag of tdigitr in africa ,1,[],0,0,1.0
+127,117,high level of parent smoke in the home are associ with a reduct in health care contact for asthma ,0,[],0,0,1.0
+128,151,in conclus  in patient with diastol dysfunct and hypertens respons to exercis  digit month of losartan and hctz blunt systol bp dure exercis ,1,[],0,0,1.0
+129,1276,it clinic effect is better than npwt or porcin adm dress alon  and this method may be suitabl for patient with non surgic treatment ,2,[],0,0,2.0
+130,1234,the phc cage is similar to the peek cage and ha good clinic outcom in short term follow up ,2,[],0,0,2.0
+131,692,howev  such a micro level approach must be understood from a broader societ perspect includ gender relat on both the macro  and the meso level ,1,[],0,0,1.0
+132,380,we found NEGATION argument in favour of confront smoker_NEG with their lung function a a tool for enhanc smoke cessat ,1,"[{u'negex': u'no', u'effectedWords': [{u'words': u'smokers'}]}]",1,1,1.0
+133,530,incorpor paravertebr block carri consider potenti for improv pathway for breast cancer patient undergo breast reconstruct  with minim procedur relat morbid ,2,[],0,0,2.0
+134,683,nbi endoscopi play an import role in the clinic diagnosi and accur patholog specimen acquisit of laryng carcinoma and can be a regular mean to detect laryng lesion in clinic ,1,[],0,0,1.0
+135,568,in patient with hht  a bevacizumab nasal spray treatment of digit administr at digit day interv with dos of digit mg  digit mg  or digit mg per spray  compar with a placebo  did NEGATION reduc month epistaxi_NEG durat in the digit consecut month immedi after the end of treatment ,0,"[{u'negex': u'not', u'effectedWords': [{u'words': u'Epistaxis'}]}]",1,1,0.0
+136,318,elev troponin level identifi patient with acut pulmonari embol at high risk of short term death and advers outcom event ,0,[],0,0,0.0
+137,196,this is in contrast to find of continu benefit at long term follow up describ in the literatur for patient with achill tendinopathi treat with gtn ,0,[],0,0,1.0
+138,327,this random  control trial ha clear shown that tongu tie can affect feed and that divis is safe  success and improv feed for mother and babi signific better than the intens skill support of a lactat consult ,2,[],0,0,2.0
+139,353,counsel and pharmacotherapi can promot modest sustain weight loss  improv clinic outcom ,2,[],0,0,1.0
+140,146,this suggest that the mechan under bhr in this clinic set may be differ from that in symptomat asthma ,1,[],0,0,1.0
+141,171,our find are suffici strong to justifi further intervent studi focus on altern target of androgen treatment carri more stringent clinic implic  in particular the cardiovascular  metabol and neurolog system ,1,[],0,0,1.0
+142,121,sport  per se  wa not a caus of the enhanc mortal  but it trigger sd in those athlet who were affect by cardiovascular condit predispos to life threaten ventricular arrhythmia dure physic exercis ,0,[],0,0,1.0
+143,1218,the author suggest that the administr of digit  plai cream is a use altern in the manag of dom ,2,[],0,0,1.0
+144,723,a a result  electro acupunctur  ea  might be use in control the ongo epidem in obes and tdigitdm ,2,[],0,0,1.0
+145,54,in this systemat review we present inform relat to the effect and safeti of the follow intervent  analges  local   carbenoxolon mouthwash  chlorhexidin  and similar agent   corticosteroid  topic   and tetracyclin antibiot mouthwash ,2,[],0,0,1.0
+146,85,a brief intervent to increas the dialogu between patient and health care provid about behavior goal can lead to increas physic activ and weight loss ,1,[],0,0,1.0
+147,1318,the effect of arm in the prevent of sever epithel in patient with hnc treat with rt is  at least  a effect  or more effect  a other and more common skin treatment ,2,[],0,0,2.0
+148,57,we meta analyz more and newer research result  and separ woman accord to menopaus status to explor soy isoflavon breast cancer associ ,1,[],0,0,1.0
+149,698,further research is need to understand the clinic import of rd  the risk and benefit of abaloparatid treatment  and the efficaci of abaloparatid v other osteoporosi treatment ,1,[],0,0,1.0
+150,334,furthermor  in the major of these patient  the elev blood pressur can be control or signific improv ,2,[],0,0,2.0
+151,580,alreadi after three month the effect of train with tailor made notch music is observ in the most direct rate of tinnitus percept   the tinnitus loud  while more global measur of tinnitus distress do not show relev chang ,1,[],0,0,1.0
+152,89,blood pressur reduct from combin drug from these digit class can be predict on the basi of addit effect ,2,[],0,0,2.0
+153,722,this is the first control studi on the long term effect on profession from implement a develop plan to enhanc user particip in a mental health hospit ,1,[],0,0,1.0
+154,1267,more long term studi are thus warrant ,1,[],0,0,1.0
+155,1352,the find support the use of dexmedetomidin in patient such a these ,1,[],0,0,1.0
+156,214,heterogen in studi design need to be address in futur research in order to test the efficaci of this intervent ,1,[],0,0,1.0
+157,361,the use of a sensit assay for troponin i improv earli diagnosi of acut myocardi infarct and risk stratif  regardless of the time of chest pain onset ,2,[],0,0,2.0
+158,113,a higher dietari divers  therefor  might be associ with lower possibl of have some metabol disord ,2,[],0,0,2.0
+159,608,among critic ill patient treat in icu in brazil  implement of a multifacet qualiti improv intervent with daili checklist  goal set  and clinician prompt did not reduc in hospit mortal ,0,[],0,0,2.0
+160,267,the atlff wa NEGATION a use tool to identifi which tongu_NEG tie_NEG infant are at risk for breast_NEG feed_NEG problem_NEG_NEG ,0,"[{u'negex': u'not', u'effectedWords': [{u'words': u'breastfeeding problems'}, {u'words': u'breast feeding problems'}]}, {u'negex': u'not', u'effectedWords': [{u'words': u'tongue tied'}]}]",2,1,0.0
+161,697,an understand of all of these mechan will be key in direct the advanc of product most suitabl for combat hiv infect in woman ,1,[],0,0,1.0
+162,18,xuezhikang show signific benefit on the incid of all caus death  chd death  myocardi infarct  and revascular a compar with placebo base on convent treatment for chd ,2,[],0,0,2.0
+163,213,daili ingest of digit ounc of yogurt contain lactobacillus acidophilus decreas both candid colon and infect ,2,[],0,0,2.0
+164,14,our result suggest that  medic expuls therapi   use either alpha antagonist or calcium channel blocker  augment the stone expuls rate compar to standard therapi for moder size distal ureter stone ,2,[],0,0,1.0
+165,160,the two treatment appli had similar effect a they both reliev pain and reduc the size of recurr aphthous ulcer ,2,[],0,0,2.0
+166,79,howev  problem with standard and safeti concern may limit their applic in clinic practic ,1,[],0,0,1.0
+167,633,in a nation repres sampl of coupl  the ourrelationship program wa effect in signific improv both relationship and individu function  suggest it can substanti increas the reach of current intervent through it low cost  web base format ,2,[],0,0,2.0
+168,95,to the best of our knowledg this is the first clinic trial that support this indic for saffron ,1,[],0,0,1.0
+169,756,they were also associ with lower frequenc of postop vomit ,2,[],0,0,1.0
+170,130,thus  ac patient should be start in hospit and continu long term on intens statin therapi ,1,[],0,0,1.0
+171,103,corticosteroid provid symptomat relief of pain in sore throat  in addit to antibiot therapi  main in particip with sever or exud sore throat ,2,[],0,0,0.0
+172,356,there is evid of a signific reduct in mortal from aaa in men age digit to digit year who undergo ultrasound screen ,2,[],0,0,2.0
+173,648,at the recoveri room  no signific efficaci differ between low dose ketamin  digit digit mg kg  and placebo in the prevent of post oper shiver in patient who underw orthoped surgeri wa observ ,0,[],0,0,0.0
+174,102,those who are femal  diabet and have neurophysiolog confirm of diagnosi have the highest risk of relaps ,0,[],0,0,0.0
+175,1296,among adult with septic_NEG shock_NEG  the earli use of vasopressin compar with norepinephrin did NEGATION improv the number of kidney failur_NEG NEGATION day ,0,"[{u'negex': u'not', u'effectedWords': [{u'words': u'Renal failure'}]}, {u'negex': u'free', u'effectedWords': [{u'words': u'Septic Shock'}]}]",2,1,0.0
+176,386,the digit year outcom were similar for patient assign to earli surgeri and those assign to conserv treatment with eventu surgeri if need  but the rate of pain relief and of perceiv recoveri were faster for those assign to earli surgeri ,2,[],0,0,2.0
+177,737,howev  over more than a decad of follow up  near digit  of patient develop recurr becaus of new non pv trigger ,0,[],0,0,2.0
+178,168,trial evid that examin the effect of n digit pufa on depress mood is limit and is difficult to summar and evalu becaus of consider heterogen ,1,[],0,0,1.0
+179,87,colchicin prophylaxi dure initi of allopurinol for chronic gouti arthriti reduc the frequenc and sever of acut flare  and reduc the likelihood of recurr flare ,2,[],0,0,0.0
+180,365,this studi wa design to evalu the effect of the antioxid flavonoid silymarin in improv long term and postprandi glycem and weight control in type digit diabet patient treat with glibenclamid ,1,[],0,0,2.0
+181,307,behavior risk factor  specif smoke and oral contracept use  mark increas the risk of pmva  a did recent onset of pmva ,0,[],0,0,0.0
+182,218,among patient who have recent had an acut coronari syndrom  an intens lipid lower statin regimen provid greater protect against death or major cardiovascular event than doe a standard regimen ,2,[],0,0,2.0
+183,1403,intraprocedur applic of this inform dure tavr signific reduc the level of contrast and radiat exposur ,1,[],0,0,2.0
