@@ -12,11 +12,15 @@ for i in result.index:
     negation_id.add(result['0'][i])
     
 dic = {}
+
 for i in result.index:
     sen = result['7'][i]
     start = sen.find('[PREN]') + 6
     end = sen[start:].find('[PREN]') + start
+    #Gia su moi cau chi co 1 NEG
     dic[result['0'][i]] = sen[start:end]
+    
+
 
 neg_word = [w.lower() for w in dic.values()]
 neg_word = [w.replace('.','') for w in neg_word]

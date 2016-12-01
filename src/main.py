@@ -376,7 +376,7 @@ def findc(title=''):
     score1 = []
     score2 = []
     a = []
-    c = np.arange(15, 25, 1)
+    c = np.arange(10, 35, 1)
     index = 0
     for i in c:
         print '-'*30
