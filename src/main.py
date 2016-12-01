@@ -271,12 +271,14 @@ def run(training_data, test_data, raw_training, raw_test, c, extra=[]):
     data_y = training_data['lab']*1.0
     test_y = test_data['lab']*1.0
     
+    #METAMAP
+    sen = pp.metamaping(training_data['sen'])
+    training_data.loc[:,'sen'] = sen
+    sen = pp.metamaping(test_data['sen'])
+    test_data.loc[:,'sen'] = sen
     
-    #training_data['sen'] = pp.metamaping(training_data['sen'])
-    #test_data['sen'] = pp.metamaping(test_data['sen'])
     
-    
-    #NGRAM    
+    #NGRAM
     data_x, ngram = training_ngram(training_data.sen)
     data_x = normalize(data_x)
     test_x = ngram.transform(test_data.sen).toarray()
@@ -293,12 +295,14 @@ def run(training_data, test_data, raw_training, raw_test, c, extra=[]):
     test_x = np.concatenate((test_x, change_phrase_test_x), axis=1)
     
     #NEGATION VECTOR
+    #TODO thu thay nhan NEGATION, va _NEG
     training_data = pd.merge(training_data, negation, on='id')
     test_data = pd.merge(test_data, negation, on='id')
     data_x = np.concatenate((data_x, normalize(training_data['neg_bin']).reshape((training_data.shape[0], 1))), axis=1)
     test_x = np.concatenate((test_x, normalize(test_data['neg_bin']).reshape(test_data.shape[0], 1)), axis=1)
     
     #SOCAL
+    #TODO thu them 2 vector GOOD, BAD doc lap
     temp = pd.merge(training_data, socal, on='id', how='left')
     data_x = np.concatenate((data_x, np.array(normalize(temp['y'])).reshape((temp.shape[0],1))), axis=1)
     temp = pd.merge(test_data, socal, on='id', how='left')
@@ -307,10 +311,7 @@ def run(training_data, test_data, raw_training, raw_test, c, extra=[]):
     #15
     clf = svm.SVC(decision_function_shape='ovr', C=c, kernel='rbf', 
                   class_weight='balanced')
-    #clf = svm.NuSVC(nu=c, decision_function_shape='ovr')
-    #0.4->0.5
-    #clf = BernoulliNB(alpha=c)
-    
+
     clf.fit(data_x, data_y)
     predict = clf.predict(test_x)
     
@@ -376,7 +377,7 @@ def findc(title=''):
     score1 = []
     score2 = []
     a = []
-    c = np.arange(10, 35, 1)
+    c = np.arange(25, 35, 1)
     index = 0
     for i in c:
         print '-'*30

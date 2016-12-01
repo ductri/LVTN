@@ -14,6 +14,7 @@ import re
 import os
 from nltk.stem.wordnet import WordNetLemmatizer
 
+base_directory = "F:\\code\\python\\lvtn\\"
 def preprocessing(corpus):
     # Lower text
     corpus = [sen.lower() for sen in corpus]
@@ -46,7 +47,8 @@ def filter_stopwords(text_corpus):
     liststopwords] for sen in text_corpus]
     result = [reduce(lambda x,y: x+' '+y, sen) for sen in temp]
     return result
-    
+
+
 def metamaping(corpus):
     words = [[w for w in sen.split(' ')] for sen in corpus]
     listwords = []
@@ -63,9 +65,13 @@ def metamaping(corpus):
     #3
     #os.system("java -jar F:\code\python\lvtn\src\metamap2.jar F:\code\python\lvtn\src\input.txt F:\code\python\lvtn\src\metamap_output.txt")
     #output = pd.read_csv("mesh.csv")
-    output = pd.read_table("F:\code\python\lvtn\src\metamap_output.txt", sep=' ', header=None)
+    #output = pd.read_table("F:\code\python\lvtn\src\metamap_output.txt", sep=' ', header=None)
+    output = pd.read_csv(base_directory+'src//metamap_output.csv')
+    temp = output['0']
+    temp = stemming(lemmatization(temp))
+    output['0'] = temp
     for i in range(output.shape[0]):
-        dict_listwords[output[0][i]] = output[1][i].upper()
+        dict_listwords[output['0'][i]] = output['1'][i].upper()
     words = [[dict_listwords[w] for w in sen] for sen in words]
     result = [reduce(lambda x, y: x+' '+y, sen) for sen in words]
     return result
@@ -97,7 +103,7 @@ def lemmatization(corpus):
     result = [reduce(lambda x,y: x+' '+y, sen) for sen in temp]
     return result
     
-src= "F:\\code\\python\\lvtn\\relab_dataset.csv" #standard_extend_fixed_ratio
+src= "F:\\code\\python\\lvtn\\relab_dataset2.csv" #standard_extend_fixed_ratio
 src_data_raw = pd.read_csv(src, dtype={'sen':str})
 src_data = preprocessing(src_data_raw['sen'])
 #src_data = src_data_raw['sen']
