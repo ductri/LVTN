@@ -72,7 +72,12 @@ def metamaping(corpus):
     output['0'] = temp
     for i in range(output.shape[0]):
         dict_listwords[output['0'][i]] = output['1'][i].upper()
-    words = [[dict_listwords[w] for w in sen] for sen in words]
+    def cvt(w):
+        if dict_listwords[w]!=w:
+            return w+' '+dict_listwords[w]
+        else: return w
+    #words = [[dict_listwords[w] for w in sen] for sen in words]
+    words = [[cvt(w) for w in sen] for sen in words]
     result = [reduce(lambda x, y: x+' '+y, sen) for sen in words]
     return result
 

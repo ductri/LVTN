@@ -10,7 +10,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 import preprocessing as pp
-
+import ast
 
 import nltk
 from sklearn.feature_extraction.text import CountVectorizer
@@ -34,6 +34,8 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 base_directory = "F:\\code\\python\\lvtn\\"
 
+score_set = []
+
 # 0:NEG, 1:NEU, 2:POS
 training_data, test_data, raw_training, raw_test, raw = pp.load()
 socal = pd.read_csv(base_directory + "so-cal.csv")
@@ -47,7 +49,7 @@ socal['y'] = pca.transform(socal['socal'].reshape(-1,1))
 
 def training_ngram(corpus, min_df = 3):
     vectorizer = CountVectorizer(min_df=3, decode_error="ignore", analyzer="word", 
-                                        lowercase=True, binary=True, ngram_range=(1,2),
+                                        lowercase=True, binary=True, ngram_range=(1,4),
                                         stop_words='english') #stop_words = 'enghlish' is the best
     corpus = list(corpus)
     #corpus.append('advers_NEG effect_NEG affect_NEG emot_NEG behavior_NEG problem_NEG emot_NEG problem_NEG cancer_NEG of_NEG breast_NEG result_NEG anxieti_NEG disord_NEG adhd_NEG fatal_NEG septic_NEG shock_NEG renal_NEG failur_NEG affect_NEG haemorrhag_NEG stroke_NEG epistaxi_NEG issu_NEG lactat_NEG level_NEG post_NEG oper_NEG wheez_NEG no_NEG chang_NEG pain_NEG level_NEG ldl_NEG cholesterol_NEG level_NEG pain_NEG no_NEG finger_NEG ulcer_NEG result_NEG like_NEG result_NEG absenc_NEG find_NEG develop_NEG histori_NEG complic_NEG use_NEG not_NEG signific_NEG syndrom_NEG st_NEG segment_NEG elev_NEG affect_NEG lesion_NEG sign_NEG gravida_NEG menopaus_NEG symptom_NEG symptom_NEG vasomotor_NEG menopaus_NEG result_NEG ulcer_NEG breastfeed_NEG problem_NEG tongu_NEG tie_NEG breast_NEG feed_NEG problem_NEG abil_NEG to_NEG turn_NEG paramet_NEG decis_NEG over_NEG weight_NEG smoker_NEG result_NEG tumor_NEG refractori_NEG diffus_NEG larg_NEG b-cell_NEG lymphoma_NEG aggrav_NEG hyperlipidemia_NEG length_NEG of_NEG gestat_NEG context_NEG breast_NEG cancer_NEG compromis_NEG elev_NEG blood_NEG pressur_NEG blood_NEG pressur_NEG remiss_NEG allergi_NEG advers_NEG effect_NEG affect_NEG emot_NEG behavior_NEG problem_NEG emot_NEG problem_NEG cancer_NEG of_NEG breast_NEG result_NEG anxieti_NEG disord_NEG adhd_NEG fatal_NEG septic_NEG shock_NEG renal_NEG failur_NEG affect_NEG haemorrhag_NEG stroke_NEG epistaxi_NEG issu_NEG lactat_NEG level_NEG post_NEG oper_NEG wheez_NEG no_NEG chang_NEG pain_NEG level_NEG ldl_NEG cholesterol_NEG level_NEG pain_NEG no_NEG finger_NEG ulcer_NEG result_NEG like_NEG result_NEG absenc_NEG find_NEG develop_NEG histori_NEG complic_NEG use_NEG not_NEG signific_NEG syndrom_NEG st_NEG segment_NEG elev_NEG affect_NEG lesion_NEG sign_NEG gravida_NEG menopaus_NEG symptom_NEG symptom_NEG vasomotor_NEG menopaus_NEG result_NEG ulcer_NEG breastfeed_NEG problem_NEG tongu_NEG tie_NEG breast_NEG feed_NEG problem_NEG abil_NEG to_NEG turn_NEG paramet_NEG decis_NEG over_NEG weight_NEG smoker_NEG result_NEG tumor_NEG refractori_NEG diffus_NEG larg_NEG b-cell_NEG lymphoma_NEG aggrav_NEG hyperlipidemia_NEG length_NEG of_NEG gestat_NEG context_NEG breast_NEG cancer_NEG compromis_NEG elev_NEG blood_NEG pressur_NEG blood_NEG pressur_NEG remiss_NEG allergi_NEG advers_NEG effect_NEG affect_NEG emot_NEG behavior_NEG problem_NEG emot_NEG problem_NEG cancer_NEG of_NEG breast_NEG result_NEG anxieti_NEG disord_NEG adhd_NEG fatal_NEG septic_NEG shock_NEG renal_NEG failur_NEG affect_NEG haemorrhag_NEG stroke_NEG epistaxi_NEG issu_NEG lactat_NEG level_NEG post_NEG oper_NEG wheez_NEG no_NEG chang_NEG pain_NEG level_NEG ldl_NEG cholesterol_NEG level_NEG pain_NEG no_NEG finger_NEG ulcer_NEG result_NEG like_NEG result_NEG absenc_NEG find_NEG develop_NEG histori_NEG complic_NEG use_NEG not_NEG signific_NEG syndrom_NEG st_NEG segment_NEG elev_NEG affect_NEG lesion_NEG sign_NEG gravida_NEG menopaus_NEG symptom_NEG symptom_NEG vasomotor_NEG menopaus_NEG result_NEG ulcer_NEG breastfeed_NEG problem_NEG tongu_NEG tie_NEG breast_NEG feed_NEG problem_NEG abil_NEG to_NEG turn_NEG paramet_NEG decis_NEG over_NEG weight_NEG smoker_NEG result_NEG tumor_NEG refractori_NEG diffus_NEG larg_NEG b-cell_NEG lymphoma_NEG aggrav_NEG hyperlipidemia_NEG length_NEG of_NEG gestat_NEG context_NEG breast_NEG cancer_NEG compromis_NEG elev_NEG blood_NEG pressur_NEG blood_NEG pressur_NEG remiss_NEG allergi_NEG advers_NEG effect_NEG affect_NEG emot_NEG behavior_NEG problem_NEG emot_NEG problem_NEG cancer_NEG of_NEG breast_NEG result_NEG anxieti_NEG disord_NEG adhd_NEG fatal_NEG septic_NEG shock_NEG renal_NEG failur_NEG affect_NEG haemorrhag_NEG stroke_NEG epistaxi_NEG issu_NEG lactat_NEG level_NEG post_NEG oper_NEG wheez_NEG no_NEG chang_NEG pain_NEG level_NEG ldl_NEG cholesterol_NEG level_NEG pain_NEG no_NEG finger_NEG ulcer_NEG result_NEG like_NEG result_NEG absenc_NEG find_NEG develop_NEG histori_NEG complic_NEG use_NEG not_NEG signific_NEG syndrom_NEG st_NEG segment_NEG elev_NEG affect_NEG lesion_NEG sign_NEG gravida_NEG menopaus_NEG symptom_NEG symptom_NEG vasomotor_NEG menopaus_NEG result_NEG ulcer_NEG breastfeed_NEG problem_NEG tongu_NEG tie_NEG breast_NEG feed_NEG problem_NEG abil_NEG to_NEG turn_NEG paramet_NEG decis_NEG over_NEG weight_NEG smoker_NEG result_NEG tumor_NEG refractori_NEG diffus_NEG larg_NEG b-cell_NEG lymphoma_NEG aggrav_NEG hyperlipidemia_NEG length_NEG of_NEG gestat_NEG context_NEG breast_NEG cancer_NEG compromis_NEG elev_NEG blood_NEG pressur_NEG blood_NEG pressur_NEG remiss_NEG allergi_NEG advers_NEG effect_NEG affect_NEG emot_NEG behavior_NEG problem_NEG emot_NEG problem_NEG cancer_NEG of_NEG breast_NEG result_NEG anxieti_NEG disord_NEG adhd_NEG fatal_NEG septic_NEG shock_NEG renal_NEG failur_NEG affect_NEG haemorrhag_NEG stroke_NEG epistaxi_NEG issu_NEG lactat_NEG level_NEG post_NEG oper_NEG wheez_NEG no_NEG chang_NEG pain_NEG level_NEG ldl_NEG cholesterol_NEG level_NEG pain_NEG no_NEG finger_NEG ulcer_NEG result_NEG like_NEG result_NEG absenc_NEG find_NEG develop_NEG histori_NEG complic_NEG use_NEG not_NEG signific_NEG syndrom_NEG st_NEG segment_NEG elev_NEG affect_NEG lesion_NEG sign_NEG gravida_NEG menopaus_NEG symptom_NEG symptom_NEG vasomotor_NEG menopaus_NEG result_NEG ulcer_NEG breastfeed_NEG problem_NEG tongu_NEG tie_NEG breast_NEG feed_NEG problem_NEG abil_NEG to_NEG turn_NEG paramet_NEG decis_NEG over_NEG weight_NEG smoker_NEG result_NEG tumor_NEG refractori_NEG diffus_NEG larg_NEG b-cell_NEG lymphoma_NEG aggrav_NEG hyperlipidemia_NEG length_NEG of_NEG gestat_NEG context_NEG breast_NEG cancer_NEG compromis_NEG elev_NEG blood_NEG pressur_NEG blood_NEG pressur_NEG remiss_NEG allergi_NEG advers_NEG effect_NEG affect_NEG emot_NEG behavior_NEG problem_NEG emot_NEG problem_NEG cancer_NEG of_NEG breast_NEG result_NEG anxieti_NEG disord_NEG adhd_NEG fatal_NEG septic_NEG shock_NEG renal_NEG failur_NEG affect_NEG haemorrhag_NEG stroke_NEG epistaxi_NEG issu_NEG lactat_NEG level_NEG post_NEG oper_NEG wheez_NEG no_NEG chang_NEG pain_NEG level_NEG ldl_NEG cholesterol_NEG level_NEG pain_NEG no_NEG finger_NEG ulcer_NEG result_NEG like_NEG result_NEG absenc_NEG find_NEG develop_NEG histori_NEG complic_NEG use_NEG not_NEG signific_NEG syndrom_NEG st_NEG segment_NEG elev_NEG affect_NEG lesion_NEG sign_NEG gravida_NEG menopaus_NEG symptom_NEG symptom_NEG vasomotor_NEG menopaus_NEG result_NEG ulcer_NEG breastfeed_NEG problem_NEG tongu_NEG tie_NEG breast_NEG feed_NEG problem_NEG abil_NEG to_NEG turn_NEG paramet_NEG decis_NEG over_NEG weight_NEG smoker_NEG result_NEG tumor_NEG refractori_NEG diffus_NEG larg_NEG b-cell_NEG lymphoma_NEG aggrav_NEG hyperlipidemia_NEG length_NEG of_NEG gestat_NEG context_NEG breast_NEG cancer_NEG compromis_NEG elev_NEG blood_NEG pressur_NEG blood_NEG pressur_NEG remiss_NEG allergi_NEG advers_NEG effect_NEG affect_NEG emot_NEG behavior_NEG problem_NEG emot_NEG problem_NEG cancer_NEG of_NEG breast_NEG result_NEG anxieti_NEG disord_NEG adhd_NEG fatal_NEG septic_NEG shock_NEG renal_NEG failur_NEG affect_NEG haemorrhag_NEG stroke_NEG epistaxi_NEG issu_NEG lactat_NEG level_NEG post_NEG oper_NEG wheez_NEG no_NEG chang_NEG pain_NEG level_NEG ldl_NEG cholesterol_NEG level_NEG pain_NEG no_NEG finger_NEG ulcer_NEG result_NEG like_NEG result_NEG absenc_NEG find_NEG develop_NEG histori_NEG complic_NEG use_NEG not_NEG signific_NEG syndrom_NEG st_NEG segment_NEG elev_NEG affect_NEG lesion_NEG sign_NEG gravida_NEG menopaus_NEG symptom_NEG symptom_NEG vasomotor_NEG menopaus_NEG result_NEG ulcer_NEG breastfeed_NEG problem_NEG tongu_NEG tie_NEG breast_NEG feed_NEG problem_NEG abil_NEG to_NEG turn_NEG paramet_NEG decis_NEG over_NEG weight_NEG smoker_NEG result_NEG tumor_NEG refractori_NEG diffus_NEG larg_NEG b-cell_NEG lymphoma_NEG aggrav_NEG hyperlipidemia_NEG length_NEG of_NEG gestat_NEG context_NEG breast_NEG cancer_NEG compromis_NEG elev_NEG blood_NEG pressur_NEG blood_NEG pressur_NEG remiss_NEG allergi_NEG advers_NEG effect_NEG affect_NEG emot_NEG behavior_NEG problem_NEG emot_NEG problem_NEG cancer_NEG of_NEG breast_NEG result_NEG anxieti_NEG disord_NEG adhd_NEG fatal_NEG septic_NEG shock_NEG renal_NEG failur_NEG affect_NEG haemorrhag_NEG stroke_NEG epistaxi_NEG issu_NEG lactat_NEG level_NEG post_NEG oper_NEG wheez_NEG no_NEG chang_NEG pain_NEG level_NEG ldl_NEG cholesterol_NEG level_NEG pain_NEG no_NEG finger_NEG ulcer_NEG result_NEG like_NEG result_NEG absenc_NEG find_NEG develop_NEG histori_NEG complic_NEG use_NEG not_NEG signific_NEG syndrom_NEG st_NEG segment_NEG elev_NEG affect_NEG lesion_NEG sign_NEG gravida_NEG menopaus_NEG symptom_NEG symptom_NEG vasomotor_NEG menopaus_NEG result_NEG ulcer_NEG breastfeed_NEG problem_NEG tongu_NEG tie_NEG breast_NEG feed_NEG problem_NEG abil_NEG to_NEG turn_NEG paramet_NEG decis_NEG over_NEG weight_NEG smoker_NEG result_NEG tumor_NEG refractori_NEG diffus_NEG larg_NEG b-cell_NEG lymphoma_NEG aggrav_NEG hyperlipidemia_NEG length_NEG of_NEG gestat_NEG context_NEG breast_NEG cancer_NEG compromis_NEG elev_NEG blood_NEG pressur_NEG blood_NEG pressur_NEG remiss_NEG allergi_NEG')
@@ -210,33 +212,42 @@ def step1(data):
                     
 def step1a(data):
     for i in range(data.shape[0]):
-        sen = data.iloc[i,1]
         neg = data.iloc[i,3]
       
         if len(neg)==0:
+            q.append([])
             continue
         else:
             list_effected_words = []
             for neg_item in neg:
-                #print neg_item['negex']
-                neg_word = pp.stemming(pp.lemmatization([neg_item['negex']]))[0]
-                #print 'neg='+neg_word
-                sen = sen.replace(neg_word, 'NEGATION')
-                #print sen
-                #print '-'*10
                 for w in neg_item['effectedWords']:
-                    list_effected_words.append(w['words'].encode('ascii'))
+                    list_effected_words.extend(w['words'].encode('ascii').split(' '))
             list_effected_words = map(str.lower, list_effected_words)
             list_effected_words = list(set(list_effected_words))
             list_effected_words = pp.lemmatization(list_effected_words)
             list_effected_words = pp.stemming(list_effected_words)
-            for w in list_effected_words:
-                for wo in w.split(' '):
-                    sen = sen.replace(wo, wo+'_NEG')
-                #print 'NEG'*30
-            data.iloc[i,1] = sen
-            
-negation = pd.read_csv(base_directory+'negation1.csv')
+            q.append(list_effected_words)
+def draft1():
+    neg = negation[map(lambda x: len(ast.literal_eval(x))>0, negation.effected_words)]
+    
+    for index in neg.index:
+        sen = negation.sen_tag_negation[index]
+        words = ast.literal_eval(negation.effected_words[index])
+        for word in words:
+            sen = sen.replace(' '+word+' ',' '+word+'_NEG ')
+        negation.sen_tag_negation[index] = sen
+
+def draft1():
+    neg = negation[map(lambda x: len(ast.literal_eval(x))>0, negation.effected_words)]
+    
+    for index in neg.index:
+        sen = negation.sen_tag[index]
+        words = ast.literal_eval(negation.effected_words[index])
+        for word in words:
+            sen = sen.replace(' '+word+' ',' '+word+'_NEG ')
+        negation.sen_tag[index] = sen
+        
+negation = pd.read_csv(base_directory+'negation_metamap.csv')
 
 #def training_negation2(training_data, test_data):
 #    neg_vec = pd.merge(training_data, negation, on='id', how='left')
@@ -265,17 +276,31 @@ def normalize(data):
         return (data-ave)/scale
     ave = np.average(data, axis=0)
     return (data-ave)/scale
-
+umls = pd.read_csv(base_directory+'umls2.csv')
 def run(training_data, test_data, raw_training, raw_test, c, extra=[]):
     
     data_y = training_data['lab']*1.0
     test_y = test_data['lab']*1.0
     
     #METAMAP
-    sen = pp.metamaping(training_data['sen'])
-    training_data.loc[:,'sen'] = sen
-    sen = pp.metamaping(test_data['sen'])
-    test_data.loc[:,'sen'] = sen
+    training_data = pd.merge(training_data, umls, how='left', on='id', suffixes=('', '_y'))
+    training_data['sen'] = training_data['umls']
+    test_data = pd.merge(test_data, umls, how='left', on='id', suffixes=('', '_y'))
+    test_data['sen'] = test_data['umls']
+    
+    #   NEGATION: change neg word to NEGATION
+    #   TODO id=203, 1248
+#    training_data = pd.merge(training_data, negation, on='id', suffixes=('', '_y'), how='left')
+#    test_data = pd.merge(test_data, negation, on='id', suffixes=('', '_y'), how='left')
+    #   2: Thay cac tu phu dinh bang nhan NEGATION
+#    training_data.sen = training_data.sen_negation
+#    test_data.sen = test_data.sen_negation
+    #   3: Them tag _NEG vao cuoi moi tu bi phu dinh
+#    training_data.sen = training_data.sen_tag
+#    test_data.sen = test_data.sen_tag
+    #   Vua them tag _NEG, vua thay nhan NEGATION
+    #training_data.sen = training_data.sen_tag_negation
+    #test_data.sen = test_data.sen_tag_negation
     
     
     #NGRAM
@@ -285,28 +310,28 @@ def run(training_data, test_data, raw_training, raw_test, c, extra=[]):
     test_x = normalize(test_x)
     
     #CHANGE PHRASE
-    change_phrase_data_x = training_change_phrase(training_data['sen'])
-    change_phrase_data_x = normalize(change_phrase_data_x)
+#    change_phrase_data_x = training_change_phrase(training_data['sen'])
+#    change_phrase_data_x = normalize(change_phrase_data_x)
+#    
+#    change_phrase_test_x = training_change_phrase(test_data['sen'])
+#    change_phrase_test_x = normalize(change_phrase_test_x)
+#    
+#    data_x = np.concatenate((data_x, change_phrase_data_x), axis=1)
+#    test_x = np.concatenate((test_x, change_phrase_test_x), axis=1)
     
-    change_phrase_test_x = training_change_phrase(test_data['sen'])
-    change_phrase_test_x = normalize(change_phrase_test_x)
-    
-    data_x = np.concatenate((data_x, change_phrase_data_x), axis=1)
-    test_x = np.concatenate((test_x, change_phrase_test_x), axis=1)
-    
-    #NEGATION VECTOR
+    #1: NEGATION VECTOR
     #TODO thu thay nhan NEGATION, va _NEG
-    training_data = pd.merge(training_data, negation, on='id')
-    test_data = pd.merge(test_data, negation, on='id')
-    data_x = np.concatenate((data_x, normalize(training_data['neg_bin']).reshape((training_data.shape[0], 1))), axis=1)
-    test_x = np.concatenate((test_x, normalize(test_data['neg_bin']).reshape(test_data.shape[0], 1)), axis=1)
+    #training_data = pd.merge(training_data, negation, on='id')
+    #test_data = pd.merge(test_data, negation, on='id')
+#    data_x = np.concatenate((data_x, normalize(training_data['neg_bin']).reshape((training_data.shape[0], 1))), axis=1)
+#    test_x = np.concatenate((test_x, normalize(test_data['neg_bin']).reshape(test_data.shape[0], 1)), axis=1)
     
     #SOCAL
     #TODO thu them 2 vector GOOD, BAD doc lap
-    temp = pd.merge(training_data, socal, on='id', how='left')
-    data_x = np.concatenate((data_x, np.array(normalize(temp['y'])).reshape((temp.shape[0],1))), axis=1)
-    temp = pd.merge(test_data, socal, on='id', how='left')
-    test_x = np.concatenate((test_x, np.array(normalize(temp['y'])).reshape((temp.shape[0],1))), axis=1)
+#    temp = pd.merge(training_data, socal, on='id', how='left')
+#    data_x = np.concatenate((data_x, np.array(normalize(temp['y'])).reshape((temp.shape[0],1))), axis=1)
+#    temp = pd.merge(test_data, socal, on='id', how='left')
+#    test_x = np.concatenate((test_x, np.array(normalize(temp['y'])).reshape((temp.shape[0],1))), axis=1)
     
     #15
     clf = svm.SVC(decision_function_shape='ovr', C=c, kernel='rbf', 
@@ -315,22 +340,27 @@ def run(training_data, test_data, raw_training, raw_test, c, extra=[]):
     clf.fit(data_x, data_y)
     predict = clf.predict(test_x)
     
-    a = metrics.accuracy_score(test_y, predict)
-    s = metrics.precision_score(test_y, predict, average="weighted")
+    p = metrics.precision_score(test_y, predict, average="weighted")
     r = metrics.recall_score(test_y, predict, average="weighted")
     f1 = metrics.f1_score(test_y, predict, average="weighted")
     
+    p_all = metrics.precision_score(test_y, predict, average=None)
+    r_all = metrics.recall_score(test_y, predict, average=None)
     f1_all = metrics.f1_score(test_y, predict, average=None)
     
     #print f1
-    return predict, s, r, f1, f1_all, a
+    return predict, p, r, f1, p_all, r_all, f1_all
 
 def cv(k, c, extra=[]):
 
-    s=0
+    p=0
     r=0
     f1=0
+    
+    p_all = np.zeros(3)
+    r_all = np.zeros(3)
     f1_all = np.zeros(3)
+    
     a = 0
     data, data_raw = pp.load(True)
     kf = KFold(data.shape[0], n_folds=k)
@@ -342,41 +372,51 @@ def cv(k, c, extra=[]):
         #print 'train_size: '+str(training_data.shape[0])
         #print 'test_size: '+str(test_data.shape[0])
         
-        predict, s_, r_, f1_,f1_all_, a_ = run(training_data, test_data,raw_training, raw_test,  c, extra)
+        predict, p_, r_, f1_, p_all_, r_all_, f1_all_ = run(training_data, test_data,raw_training, raw_test,  c, extra)
 
-        s += s_
+        p += p_
         r += r_
         f1 += f1_
+
+        p_all += p_all_
+        r_all += r_all_
         f1_all += f1_all_
-        a += a_
   
-    s /= 1.0*len(kf)
+    p /= 1.0*len(kf)
     r /= 1.0*len(kf)
     f1 /= 1.0*len(kf)
+    p_all /= len(kf)
+    r_all /= len(kf)
     f1_all /= len(kf)
-    a /= len(kf)
-
-    return s, r, f1, f1_all, a
+    score_set.append(f1)
+    return p, r, f1, p_all, r_all, f1_all
     
 def test(n=50, c=17, k=5, extra=[]):
+    p = 0
+    r = 0
     f1 = 0
+    p_all = 0
+    r_all = 0
     f1_all = 0
-    a = 0
+    
     for i in range(0,n):
-        _,_,f1_, f1_all_, a_ = cv(k, c, extra)
-        f1+= f1_
+        p_,r_,f1_, p_all_, r_all_, f1_all_ = cv(k, c, extra)
+        f1 += f1_
+        p += p_
+        r += r_
+        p_all += p_all_
+        r_all += r_all_
         f1_all += f1_all_
-        a += a_
         
-    return f1/n, f1_all/n, a
+    return p/n, r/n, f1/n, p_all/n, r_all/n, f1_all/n
 a=[]
 def findc(title=''):
     start = time.time()
+    result_all = []
     score = []
     score0 = []
     score1 = []
     score2 = []
-    a = []
     c = np.arange(25, 35, 1)
     index = 0
     for i in c:
@@ -386,11 +426,11 @@ def findc(title=''):
         print '-'*30
         index = index + 1
         result = test(n=30, c=i, k=5, extra=[3])
-        score.append(result[0])
-        score0.append(result[1][0])
-        score1.append(result[1][1])
-        score2.append(result[1][2])
-        a.append(result[2])
+        result_all.append(result)
+        score.append(result[2])
+        score0.append(result[5][0])
+        score1.append(result[5][1])
+        score2.append(result[5][2])
     plt.figure()
     l1, l2, l3, l4 = plt.plot(c, score, 'b-', c, score0, 'g--', c, score1, 'r--', c, score2, 'b--')
     plt.title(title)
@@ -401,4 +441,7 @@ def findc(title=''):
     end = time.time()
     print('time: ' + str(end-start))
     print('Score max: '+ str(max(score)) + ' with c='+str(c[np.argmax(score)]))
-
+    temp = zip(*result_all)
+    temp = temp[2]
+    print result_all[np.argmax(temp)]
+    
