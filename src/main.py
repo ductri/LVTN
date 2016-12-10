@@ -290,11 +290,11 @@ def run(training_data, test_data, raw_training, raw_test, c, extra=[]):
     
     #   NEGATION: change neg word to NEGATION
     #   TODO id=203, 1248
-#    training_data = pd.merge(training_data, negation, on='id', suffixes=('', '_y'), how='left')
-#    test_data = pd.merge(test_data, negation, on='id', suffixes=('', '_y'), how='left')
+    training_data = pd.merge(training_data, negation, on='id', suffixes=('', '_y'), how='left')
+    test_data = pd.merge(test_data, negation, on='id', suffixes=('', '_y'), how='left')
     #   2: Thay cac tu phu dinh bang nhan NEGATION
-#    training_data.sen = training_data.sen_negation
-#    test_data.sen = test_data.sen_negation
+    training_data.sen = training_data.sen_negation
+    test_data.sen = test_data.sen_negation
     #   3: Them tag _NEG vao cuoi moi tu bi phu dinh
 #    training_data.sen = training_data.sen_tag
 #    test_data.sen = test_data.sen_tag
@@ -310,28 +310,28 @@ def run(training_data, test_data, raw_training, raw_test, c, extra=[]):
     test_x = normalize(test_x)
     
     #CHANGE PHRASE
-#    change_phrase_data_x = training_change_phrase(training_data['sen'])
-#    change_phrase_data_x = normalize(change_phrase_data_x)
-#    
-#    change_phrase_test_x = training_change_phrase(test_data['sen'])
-#    change_phrase_test_x = normalize(change_phrase_test_x)
-#    
-#    data_x = np.concatenate((data_x, change_phrase_data_x), axis=1)
-#    test_x = np.concatenate((test_x, change_phrase_test_x), axis=1)
+    change_phrase_data_x = training_change_phrase(training_data['sen'])
+    change_phrase_data_x = normalize(change_phrase_data_x)
+    
+    change_phrase_test_x = training_change_phrase(test_data['sen'])
+    change_phrase_test_x = normalize(change_phrase_test_x)
+    
+    data_x = np.concatenate((data_x, change_phrase_data_x), axis=1)
+    test_x = np.concatenate((test_x, change_phrase_test_x), axis=1)
     
     #1: NEGATION VECTOR
     #TODO thu thay nhan NEGATION, va _NEG
     #training_data = pd.merge(training_data, negation, on='id')
     #test_data = pd.merge(test_data, negation, on='id')
-#    data_x = np.concatenate((data_x, normalize(training_data['neg_bin']).reshape((training_data.shape[0], 1))), axis=1)
-#    test_x = np.concatenate((test_x, normalize(test_data['neg_bin']).reshape(test_data.shape[0], 1)), axis=1)
+    data_x = np.concatenate((data_x, normalize(training_data['neg_bin']).reshape((training_data.shape[0], 1))), axis=1)
+    test_x = np.concatenate((test_x, normalize(test_data['neg_bin']).reshape(test_data.shape[0], 1)), axis=1)
     
     #SOCAL
     #TODO thu them 2 vector GOOD, BAD doc lap
-#    temp = pd.merge(training_data, socal, on='id', how='left')
-#    data_x = np.concatenate((data_x, np.array(normalize(temp['y'])).reshape((temp.shape[0],1))), axis=1)
-#    temp = pd.merge(test_data, socal, on='id', how='left')
-#    test_x = np.concatenate((test_x, np.array(normalize(temp['y'])).reshape((temp.shape[0],1))), axis=1)
+    temp = pd.merge(training_data, socal, on='id', how='left')
+    data_x = np.concatenate((data_x, np.array(normalize(temp['y'])).reshape((temp.shape[0],1))), axis=1)
+    temp = pd.merge(test_data, socal, on='id', how='left')
+    test_x = np.concatenate((test_x, np.array(normalize(temp['y'])).reshape((temp.shape[0],1))), axis=1)
     
     #15
     clf = svm.SVC(decision_function_shape='ovr', C=c, kernel='rbf', 
